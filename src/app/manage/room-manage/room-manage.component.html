@@ -1,0 +1,26 @@
+<h2>Room Management</h2>
+
+<div>
+  <h3>Add New Room</h3>
+  <input [(ngModel)]="newRoom.room_name" placeholder="Room Name" />
+  <input [(ngModel)]="newRoom.room_desc" placeholder="Room Description" />
+  <input [(ngModel)]="newRoom.room_price" placeholder="Room Price" type="number" />
+  <button (click)="addRoom()">Add Room</button>
+</div>
+
+<h3>Rooms List</h3>
+<ul>
+  <li *ngFor="let room of rooms">
+    {{ room.room_name }} - {{ room.room_desc }} - {{ room.room_price }}
+    <button (click)="editRoom(room)">Edit</button>
+    <button (click)="deleteRoom(room.room_id)">Delete</button>
+  </li>
+</ul>
+
+<div *ngIf="selectedRoom">
+  <h3>Edit Room</h3>
+  <input [(ngModel)]="selectedRoom.room_name" placeholder="Room Name" />
+  <input [(ngModel)]="selectedRoom.room_desc" placeholder="Room Description" />
+  <input [(ngModel)]="selectedRoom.room_price" placeholder="Room Price" type="number" />
+  <button (click)="updateRoom()">Update Room</button>
+</div>

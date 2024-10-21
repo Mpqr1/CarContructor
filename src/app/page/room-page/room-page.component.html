@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Room List</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Room Image</th>
+          <th>Room Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of rooms">
+          <td>
+            <img *ngIf="room.room_image" [src]="'/uploads/' + room.room_image" alt="Room Image" width="100">
+          </td>
+          <td>{{ room.room_name }}</td>
+          <td>{{ room.room_desc }}</td>
+          <td>{{ room.room_price }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editRoom(room.room_id)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteRoom(room.room_id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

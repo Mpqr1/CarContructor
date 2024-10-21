@@ -1,0 +1,34 @@
+<header>
+    <div class="container">
+      <a routerLink="/" class="logo">Resort</a>
+      <nav>
+        <ul>
+            <li >
+                <a routerLink="/login">Login</a>
+              </li>
+              <li >
+                <a routerLink="/register">Register</a>
+              </li>
+  
+          <!-- Show user info and logout options if authenticated -->
+          <li class="menu-container">
+            <a routerLink="/dashboard">BLUE</a>
+            <div class="menu">
+              <a routerLink="/profile">Profile</a>
+              <a routerLink="/order">Orders</a>
+            </div>
+          </li>
+          <li *ngIf="authService.isLoggedIn()">
+            <button (click)="logout()" class="btn btn-danger">Logout</button>
+          </li>
+  
+          <!-- Cart link always visible -->
+          <li>
+            <a routerLink="/cart-page">
+              My Book
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
