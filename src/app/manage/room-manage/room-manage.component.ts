@@ -15,16 +15,16 @@ export class RoomManageComponent implements OnInit {
     room_desc: '',
     room_price: 0,
     room_stock: 0,
-    room_image: '' // Room image URL
-  };  // To store the details of a new room being added
+    room_image: '',
+    room_status: true  // Default room_status to true (available)
+  };
 
   constructor(private roomService: RoomService) { }
 
   ngOnInit(): void {
-    this.loadRooms();  // Load the rooms when the component initializes
+    this.loadRooms();
   }
 
-  // Function to load the rooms
   loadRooms() {
     this.roomService.getRooms().subscribe({
       next: (data) => {
@@ -36,13 +36,12 @@ export class RoomManageComponent implements OnInit {
     });
   }
 
-  // Function to add a new room
   addRoom() {
     this.roomService.addRoom(this.newRoom).subscribe({
       next: (response) => {
         console.log('Room added successfully', response);
-        this.loadRooms();  // Reload the list of rooms
-        this.newRoom = { room_name: '', room_desc: '', room_price: 0, room_stock: 0, room_image: '' };  // Reset form
+        this.loadRooms();
+        this.newRoom = { room_name: '', room_desc: '', room_price: 0, room_stock: 0, room_image: '', room_status: true };  // Reset form
       },
       error: (error) => {
         console.error('Error adding room:', error);
@@ -50,18 +49,16 @@ export class RoomManageComponent implements OnInit {
     });
   }
 
-  // Function to edit an existing room
   editRoom(room: any) {
     this.selectedRoom = { ...room };  // Clone the selected room object for editing
   }
 
-  // Function to update the room
   updateRoom() {
     if (this.selectedRoom) {
       this.roomService.updateRoom(this.selectedRoom.room_id, this.selectedRoom).subscribe({
         next: () => {
-          this.loadRooms();  // Reload the room list after updating
-          this.selectedRoom = null;  // Clear the selected room
+          this.loadRooms();
+          this.selectedRoom = null;
         },
         error: (err) => {
           console.error('Error updating room:', err);
@@ -70,11 +67,10 @@ export class RoomManageComponent implements OnInit {
     }
   }
 
-  // Function to delete a room
   deleteRoom(id: number) {
     this.roomService.deleteRoom(id).subscribe({
       next: () => {
-        this.loadRooms();  // Reload the list of rooms after deleting
+        this.loadRooms();
       },
       error: (err) => {
         console.error('Error deleting room:', err);

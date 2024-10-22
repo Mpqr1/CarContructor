@@ -6,7 +6,10 @@
   <input [(ngModel)]="newRoom.room_desc" placeholder="Room Description" />
   <input [(ngModel)]="newRoom.room_price" placeholder="Room Price" type="number" />
   <input [(ngModel)]="newRoom.room_stock" placeholder="Room Stock" type="number" />
-  <input [(ngModel)]="newRoom.room_image" placeholder="Room Image URL" /> <!-- Image URL Field -->
+  <input [(ngModel)]="newRoom.room_image" placeholder="Room Image URL" />
+  <label>
+    <input type="checkbox" [(ngModel)]="newRoom.room_status" /> Available
+  </label>
   <button (click)="addRoom()">Add Room</button>
 </div>
 
@@ -23,7 +26,7 @@
       
       <div>
         <!-- Room Details -->
-        <strong>{{ room.room_name }}</strong> - {{ room.room_desc }} - Price: {{ room.room_price }} - Stock: {{ room.room_stock }}
+        <strong>{{ room.room_name }}</strong> - {{ room.room_desc }} - Price: {{ room.room_price }} - Stock: {{ room.room_stock }} - Status: {{ room.room_status ? 'Available' : 'Not Available' }}
         <div>
           <button (click)="editRoom(room)">Edit</button>
           <button (click)="deleteRoom(room.room_id)">Delete</button>
@@ -39,6 +42,9 @@
   <input [(ngModel)]="selectedRoom.room_desc" placeholder="Room Description" />
   <input [(ngModel)]="selectedRoom.room_price" placeholder="Room Price" type="number" />
   <input [(ngModel)]="selectedRoom.room_stock" placeholder="Room Stock" type="number" />
-  <input [(ngModel)]="selectedRoom.room_image" placeholder="Room Image URL" /> <!-- Edit Image URL Field -->
+  <input [(ngModel)]="selectedRoom.room_image" placeholder="Room Image URL" />
+  <label>
+    <input type="checkbox" [(ngModel)]="selectedRoom.room_status" /> Available
+  </label>
   <button (click)="updateRoom()">Update Room</button>
 </div>
