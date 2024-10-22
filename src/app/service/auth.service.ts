@@ -1,7 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';  // ใช้ tap เพื่อตรวจสอบและเก็บ Token
+import { Observable, of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';  // ใช้ tap เพื่อตรวจสอบและเก็บ Token
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -17,7 +17,9 @@ export class AuthService {
 
   // ฟังก์ชันลงทะเบียน
   register(userData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/users/register`, userData);
+    return this.http.post(`${this.apiUrl}/users/register`, userData).pipe(
+      catchError(this.handleError('register', []))  // จัดการ error
+    );
   }
 
   // ฟังก์ชันเข้าสู่ระบบ
@@ -27,7 +29,8 @@ export class AuthService {
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('token', response.token);  // เก็บ Token ใน localStorage
         }
-      })
+      }),
+      catchError(this.handleError('login', []))  // จัดการ error
     );
   }
 
@@ -51,9 +54,22 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if (token) {
-        return JSON.parse(atob(token.split('.')[1]));  // Decode payload ของ JWT token
+        try {
+          return JSON.parse(atob(token.split('.')[1]));  // Decode payload ของ JWT token
+        } catch (error) {
+          console.error('Error parsing token:', error);
+          return null;
+        }
       }
     }
     return null;
+  }
+
+  // ฟังก์ชันจัดการ error
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);  // log error ลง console
+      return of(result as T);  // คืนค่าแบบที่ไม่ให้แอปหยุดทำงาน
+    };
   }
 }

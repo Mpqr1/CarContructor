@@ -1,6 +1,9 @@
 <h2>Login</h2>
 <form (ngSubmit)="login()">
-  <input [(ngModel)]="credentials.user_email" placeholder="Email" required type="email">
-  <input [(ngModel)]="credentials.user_password" placeholder="Password" required type="password">
+  <input [(ngModel)]="credentials.user_email" placeholder="Email" required type="email" name="email">
+  <input [(ngModel)]="credentials.user_password" placeholder="Password" required type="password" name="password">
   <button type="submit">Login</button>
+
+  <!-- แสดงข้อความ error ถ้ารหัสผ่านไม่ถูกต้อง -->
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
 </form>

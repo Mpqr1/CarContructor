@@ -50,7 +50,7 @@ export class RoomService {
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';
 
-    if (typeof window !== 'undefined' && error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Client-side error
       errorMessage = `An error occurred: ${error.error.message}`;
     } else {
@@ -58,7 +58,7 @@ export class RoomService {
       errorMessage = `Server returned code: ${error.status}, message: ${error.message}`;
     }
 
-    console.error('Full error:', error);
+    console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
 }

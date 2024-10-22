@@ -5,15 +5,31 @@
   <input [(ngModel)]="newRoom.room_name" placeholder="Room Name" />
   <input [(ngModel)]="newRoom.room_desc" placeholder="Room Description" />
   <input [(ngModel)]="newRoom.room_price" placeholder="Room Price" type="number" />
+  <input [(ngModel)]="newRoom.room_stock" placeholder="Room Stock" type="number" />
+  <input [(ngModel)]="newRoom.room_image" placeholder="Room Image URL" /> <!-- Image URL Field -->
   <button (click)="addRoom()">Add Room</button>
 </div>
 
 <h3>Rooms List</h3>
 <ul>
   <li *ngFor="let room of rooms">
-    {{ room.room_name }} - {{ room.room_desc }} - {{ room.room_price }}
-    <button (click)="editRoom(room)">Edit</button>
-    <button (click)="deleteRoom(room.room_id)">Delete</button>
+    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+      <!-- Room Image -->
+      <img [src]="room.room_image" alt="Room Image" style="width: 100px; height: 100px; margin-right: 10px;" *ngIf="room.room_image else noImage" />
+      
+      <ng-template #noImage>
+        <p>No Image Available</p>
+      </ng-template>
+      
+      <div>
+        <!-- Room Details -->
+        <strong>{{ room.room_name }}</strong> - {{ room.room_desc }} - Price: {{ room.room_price }} - Stock: {{ room.room_stock }}
+        <div>
+          <button (click)="editRoom(room)">Edit</button>
+          <button (click)="deleteRoom(room.room_id)">Delete</button>
+        </div>
+      </div>
+    </div>
   </li>
 </ul>
 
@@ -22,5 +38,7 @@
   <input [(ngModel)]="selectedRoom.room_name" placeholder="Room Name" />
   <input [(ngModel)]="selectedRoom.room_desc" placeholder="Room Description" />
   <input [(ngModel)]="selectedRoom.room_price" placeholder="Room Price" type="number" />
+  <input [(ngModel)]="selectedRoom.room_stock" placeholder="Room Stock" type="number" />
+  <input [(ngModel)]="selectedRoom.room_image" placeholder="Room Image URL" /> <!-- Edit Image URL Field -->
   <button (click)="updateRoom()">Update Room</button>
 </div>

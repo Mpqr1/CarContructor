@@ -7,21 +7,24 @@ import { RoomService } from '../../service/room.service';
   styleUrls: ['./room-manage.component.css']
 })
 export class RoomManageComponent implements OnInit {
-  rooms: any[] = [];  // สร้างตัวแปร rooms เพื่อเก็บข้อมูลห้องทั้งหมด
-  selectedRoom: any = null;  // ตัวแปรสำหรับเก็บห้องที่ถูกเลือกแก้ไข
+  rooms: any[] = [];  // To store the list of rooms
+  selectedRoom: any = null;  // For editing a specific room
+
   newRoom = {
     room_name: '',
     room_desc: '',
-    room_price: 0
-  };  // สร้างตัวแปรสำหรับข้อมูลห้องใหม่
+    room_price: 0,
+    room_stock: 0,
+    room_image: '' // Room image URL
+  };  // To store the details of a new room being added
 
   constructor(private roomService: RoomService) { }
 
   ngOnInit(): void {
-    this.loadRooms();  // เรียกฟังก์ชันโหลดข้อมูลห้องเมื่อ component โหลด
+    this.loadRooms();  // Load the rooms when the component initializes
   }
 
-  // ฟังก์ชันสำหรับโหลดข้อมูลห้อง
+  // Function to load the rooms
   loadRooms() {
     this.roomService.getRooms().subscribe({
       next: (data) => {
@@ -33,13 +36,13 @@ export class RoomManageComponent implements OnInit {
     });
   }
 
-  // ฟังก์ชันสำหรับเพิ่มห้องใหม่
+  // Function to add a new room
   addRoom() {
     this.roomService.addRoom(this.newRoom).subscribe({
       next: (response) => {
         console.log('Room added successfully', response);
-        this.loadRooms();  // โหลดข้อมูลห้องใหม่หลังจากเพิ่ม
-        this.newRoom = { room_name: '', room_desc: '', room_price: 0 };  // รีเซ็ตฟอร์มหลังจากเพิ่มห้องใหม่
+        this.loadRooms();  // Reload the list of rooms
+        this.newRoom = { room_name: '', room_desc: '', room_price: 0, room_stock: 0, room_image: '' };  // Reset form
       },
       error: (error) => {
         console.error('Error adding room:', error);
@@ -47,18 +50,18 @@ export class RoomManageComponent implements OnInit {
     });
   }
 
-  // ฟังก์ชันสำหรับแก้ไขห้อง
+  // Function to edit an existing room
   editRoom(room: any) {
-    this.selectedRoom = room;
+    this.selectedRoom = { ...room };  // Clone the selected room object for editing
   }
 
-  // ฟังก์ชันสำหรับอัปเดตข้อมูลห้องที่ถูกแก้ไข
+  // Function to update the room
   updateRoom() {
     if (this.selectedRoom) {
       this.roomService.updateRoom(this.selectedRoom.room_id, this.selectedRoom).subscribe({
         next: () => {
-          this.loadRooms();
-          this.selectedRoom = null;  // รีเซ็ตหลังจากอัปเดตสำเร็จ
+          this.loadRooms();  // Reload the room list after updating
+          this.selectedRoom = null;  // Clear the selected room
         },
         error: (err) => {
           console.error('Error updating room:', err);
@@ -67,11 +70,11 @@ export class RoomManageComponent implements OnInit {
     }
   }
 
-  // ฟังก์ชันสำหรับลบห้อง
+  // Function to delete a room
   deleteRoom(id: number) {
     this.roomService.deleteRoom(id).subscribe({
       next: () => {
-        this.loadRooms();  // โหลดข้อมูลใหม่หลังจากลบห้อง
+        this.loadRooms();  // Reload the list of rooms after deleting
       },
       error: (err) => {
         console.error('Error deleting room:', err);

@@ -1,0 +1,87 @@
+/* ฟอร์มการเพิ่มห้อง */
+h2, h3 {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #4CAF50; /* เขียว */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049; /* สีเขียวเข้มเมื่อ hover */
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  li button {
+    background-color: #ff4b5c; /* สีแดง */
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  li button:hover {
+    background-color: #e0434e; /* สีแดงเข้มเมื่อ hover */
+  }
+  
+  /* ปุ่มแก้ไขห้อง */
+  li button:nth-child(1) {
+    background-color: #f0ad4e; /* สีส้มสำหรับปุ่มแก้ไข */
+  }
+  
+  li button:nth-child(1):hover {
+    background-color: #ec971f; /* สีส้มเข้มเมื่อ hover */
+  }
+  
+  /* ฟอร์มแก้ไขห้อง */
+  input {
+    font-size: 16px;
+  }
+  
+  
