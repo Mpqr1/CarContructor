@@ -1,34 +1,26 @@
 <header>
-    <div class="container">
-      <a routerLink="/" class="logo">Resort</a>
-      <nav>
-        <ul>
-            <li >
-                <a routerLink="/login">Login</a>
-              </li>
-              <li >
-                <a routerLink="/register">Register</a>
-              </li>
-  
-          <!-- Show user info and logout options if authenticated -->
-          <li class="menu-container">
-            <a routerLink="/dashboard">BLUE</a>
-            <div class="menu">
-              <a routerLink="/profile">Profile</a>
-              <a routerLink="/order">Orders</a>
-            </div>
-          </li>
-          <li *ngIf="authService.isLoggedIn()">
+  <div class="container">
+    <a routerLink="/" class="logo">Resort</a>
+    <nav>
+      <ul>
+        <!-- แสดง Login และ Register ถ้าไม่ได้ล็อกอิน -->
+        <li *ngIf="!isAuthenticated">
+          <a routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="!isAuthenticated">
+          <a routerLink="/register">Register</a>
+        </li>
+
+        <!-- แสดงชื่อผู้ใช้และ dropdown เมนูเมื่อผู้ใช้ล็อกอิน -->
+        <li *ngIf="isAuthenticated" class="menu-container">
+          <a class="user-name">{{ userName }}</a>
+          <div class="menu">
+            <a routerLink="/profile">Profile</a>
+            <a routerLink="/cart-page">My Book</a>
             <button (click)="logout()" class="btn btn-danger">Logout</button>
-          </li>
-  
-          <!-- Cart link always visible -->
-          <li>
-            <a routerLink="/cart-page">
-              My Book
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

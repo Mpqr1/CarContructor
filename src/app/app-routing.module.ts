@@ -9,6 +9,7 @@ import { NewsPageComponent } from './page/news-page/news-page.component';
 import { RoomManageComponent } from './manage/room-manage/room-manage.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
+import { BookingManageComponent } from './manage/booking-manage/booking-manage.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'contact', component:ContactPageComponent},
   {path: 'news', component:NewsPageComponent },
   {path: 'room-manage', component: RoomManageComponent},
+  {path: 'booking-manage', component: BookingManageComponent},
   {path: 'room-list', component: RoomListComponent},
   {path: 'booking-detail', component: BookingDetailComponent}
 ];

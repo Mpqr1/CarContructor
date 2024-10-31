@@ -1,11 +1,15 @@
-<h2>Register</h2>
-<form (ngSubmit)="register()">
-  <input [(ngModel)]="user.user_name" placeholder="Name" required name="user_name">
-  <input [(ngModel)]="user.user_email" placeholder="Email" required type="email" name="user_email">
-  <input [(ngModel)]="user.user_password" placeholder="Password" required type="password" name="user_password">
-  <select [(ngModel)]="user.user_role" name="user_role">
-    <option value="user">User</option>
-    <option value="admin">Admin</option>
-  </select>
-  <button type="submit">Register</button>
-</form>
+<div class="container">
+  <div class="form-container">
+    <h2>Register</h2>
+    <form (ngSubmit)="register()">
+      <input [(ngModel)]="user.user_name" placeholder="Name" required name="user_name" />
+      <input [(ngModel)]="user.user_email" placeholder="Email" required type="email" name="user_email" />
+      <input [(ngModel)]="user.user_password" placeholder="Password" required type="password" name="user_password" />
+      <select [(ngModel)]="user.user_role" name="user_role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>

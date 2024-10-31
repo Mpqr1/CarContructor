@@ -15,6 +15,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { RoomManageComponent } from './manage/room-manage/room-manage.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
+import { BookingManageComponent } from './manage/booking-manage/booking-manage.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
     HeaderComponent,
     RoomManageComponent,
     RoomListComponent,
-    BookingDetailComponent
+    BookingDetailComponent,
+    BookingManageComponent
   ],
   imports: [
     BrowserModule,

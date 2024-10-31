@@ -1,16 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  constructor(public authService: AuthService) {}
+export class HeaderComponent implements OnInit {
+  userName: string | null = ''; // ตัวแปรเก็บชื่อผู้ใช้
+  isAuthenticated: boolean = false;
 
-  // เรียกใช้ฟังก์ชัน logout
-  logout() {
+  constructor(public authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.authService.isAuthenticated().subscribe((authStatus) => {
+      this.isAuthenticated = authStatus;
+      this.userName = this.authService.getUserName();
+    });
+  }
+
+  logout(): void {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

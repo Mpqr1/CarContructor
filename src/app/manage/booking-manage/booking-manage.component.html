@@ -1,0 +1,31 @@
+<h2>Booking Management</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Booking ID</th>
+      <th>Room ID</th>
+      <th>User ID</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Total Days</th>
+      <th>Total Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let booking of bookings">
+      <td>{{ booking.booking_id }}</td>
+      <td>{{ booking.room_id }}</td>
+      <td>{{ booking.user_id || 'N/A' }}</td>
+      <td>{{ booking.start_date }}</td>
+      <td>{{ booking.end_date }}</td>
+      <td>{{ booking.total_days }}</td>
+      <td>{{ booking.total_price }}</td>
+      <td>
+        <!-- ปุ่มลบการจอง -->
+        <button (click)="deleteBooking(booking.booking_id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

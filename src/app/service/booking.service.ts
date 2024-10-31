@@ -19,4 +19,13 @@ export class BookingService {
   updateRoomStock(roomId: number, daysBooked: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/update-room-stock/${roomId}`, { daysBooked });
   }
+
+  getAllBookings(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}`);
+  }
+
+  // ลบการจองโดย booking_id
+  deleteBooking(bookingId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${bookingId}`);
+  }
 }
