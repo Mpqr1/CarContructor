@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000';  // URL ของ backend API
+  private apiUrl = 'http://localhost:3000/users';  // URL ของ backend API
 
   constructor(
     private http: HttpClient, 
@@ -49,6 +49,10 @@ export class AuthService {
     return false;
   }
 
+  getUserInfo(userId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${userId}`);
+  }
+  
   // ฟังก์ชันเพื่อดึงข้อมูลผู้ใช้ที่เข้าสู่ระบบ
   getUser(): any {
     if (isPlatformBrowser(this.platformId)) {

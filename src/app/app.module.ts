@@ -11,9 +11,10 @@ import { LoginPageComponent } from './page/login-page/login-page.component';
 import { NewsPageComponent } from './page/news-page/news-page.component';
 import { RegisterPageComponent } from './page/register-page/register-page.component';
 import { HeaderComponent } from './partials/header/header.component';
-import { RoomPageComponent } from './page/room-page/room-page.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { RoomManageComponent } from './manage/room-manage/room-manage.component';
+import { RoomListComponent } from './room-list/room-list.component';
+import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { RoomManageComponent } from './manage/room-manage/room-manage.component'
     RegisterPageComponent,
     NewsPageComponent,
     HeaderComponent,
-    RoomPageComponent,
-    RoomManageComponent
+    RoomManageComponent,
+    RoomListComponent,
+    BookingDetailComponent
   ],
   imports: [
     BrowserModule,

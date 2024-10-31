@@ -10,6 +10,11 @@ export class RoomService {
   private apiUrl = 'http://localhost:3000/rooms';
 
   constructor(private http: HttpClient) { }
+  
+// Get available rooms (room_status = true)
+getAvailableRooms(): Observable<any> {
+  return this.http.get(`${this.apiUrl}/available`);
+}
 
   // ดึงข้อมูลห้องทั้งหมด
   getRooms(): Observable<any> {

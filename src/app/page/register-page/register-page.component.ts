@@ -11,7 +11,6 @@ export class RegisterPageComponent {
     user_name: '',
     user_email: '',
     user_password: '',
-    user_phone: '',
     user_role: 'user'  // ค่าเริ่มต้นคือ 'user'
   };
 

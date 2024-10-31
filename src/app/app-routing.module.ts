@@ -6,8 +6,9 @@ import { RegisterPageComponent } from './page/register-page/register-page.compon
 import { BookingPageComponent } from './page/booking-page/booking-page.component';
 import { ContactPageComponent } from './page/contact-page/contact-page.component';
 import { NewsPageComponent } from './page/news-page/news-page.component';
-import { RoomPageComponent } from './page/room-page/room-page.component';
 import { RoomManageComponent } from './manage/room-manage/room-manage.component';
+import { RoomListComponent } from './room-list/room-list.component';
+import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -17,8 +18,9 @@ const routes: Routes = [
   {path: 'booking', component:BookingPageComponent },
   {path: 'contact', component:ContactPageComponent},
   {path: 'news', component:NewsPageComponent },
-  {path: 'room', component: RoomPageComponent},
-  {path: 'room-manage', component: RoomManageComponent}
+  {path: 'room-manage', component: RoomManageComponent},
+  {path: 'room-list', component: RoomListComponent},
+  {path: 'booking-detail', component: BookingDetailComponent}
 ];
 
 @NgModule({
