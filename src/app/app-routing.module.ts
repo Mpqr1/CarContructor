@@ -10,6 +10,7 @@ import { RoomManageComponent } from './manage/room-manage/room-manage.component'
 import { RoomListComponent } from './room-list/room-list.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { BookingManageComponent } from './manage/booking-manage/booking-manage.component';
+import { AdminPageComponent } from './page/admin-page/admin-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'room-manage', component: RoomManageComponent},
   {path: 'booking-manage', component: BookingManageComponent},
   {path: 'room-list', component: RoomListComponent},
-  {path: 'booking-detail', component: BookingDetailComponent}
+  {path: 'booking-detail', component: BookingDetailComponent},
+  {path: 'admin-page', component: AdminPageComponent},
 ];
 
 @NgModule({

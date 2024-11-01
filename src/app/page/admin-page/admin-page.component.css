@@ -1,0 +1,49 @@
+/* Main dashboard layout */
+.dashboard {
+    display: flex; /* ใช้ flexbox สำหรับ layout */
+    height: calc(100vh - 120px); /* ความสูงเต็มหน้าจอ หักลบความสูงของ header */
+    margin-top: 120px; /* ระยะห่างจากด้านบน ให้ตรงกับความสูงของ header */
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 200px; /* ความกว้าง sidebar คงที่ */
+    background-color: #0b2239; /* สีพื้นหลังของ sidebar */
+    color: white; /* สีของตัวอักษร */
+    padding: 20px 0; /* ลด padding ซ้าย-ขวา */
+    position: fixed; /* ยึดติดกับขอบหน้าจอ */
+    top: 150px; /* เลื่อนลงมาให้ตรงกับด้านล่างของ header */
+    left: 0;
+    height: calc(100vh - 120px); /* ปรับความสูง sidebar ให้เต็มหน้าจอ */
+    box-sizing: border-box;
+  }
+  
+  /* Main content styling */
+  .main-content {
+    margin-left: 250px; /* เหลือที่ว่างทางซ้ายสำหรับ sidebar */
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+ .sidebar ul {
+  list-style-type: none; /* ลบจุดหน้ารายการ */
+  padding: 0; /* ลบ padding */
+  margin: 0; /* ลบ margin */
+}
+
+.sidebar ul li {
+  margin-bottom: 20px; /* ระยะห่างระหว่างลิงก์ */
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

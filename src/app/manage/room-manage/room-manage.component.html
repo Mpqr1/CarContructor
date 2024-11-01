@@ -1,50 +1,110 @@
-<h2>Room Management</h2>
+<div class="dashboard">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <ul>
+      <li><a routerLink="/room-manage">Rooms manage</a></li>
+      <li><a routerLink="/booking-manage">Booking manage</a></li>
+      <li><a routerLink="/user-manage">User manage</a></li>
+    </ul>
+  </nav>
 
-<div>
-  <h3>Add New Room</h3>
-  <input [(ngModel)]="newRoom.room_name" placeholder="Room Name" />
-  <input [(ngModel)]="newRoom.room_desc" placeholder="Room Description" />
-  <input [(ngModel)]="newRoom.room_price" placeholder="Room Price" type="number" />
-  <input [(ngModel)]="newRoom.room_stock" placeholder="Room Stock" type="number" />
-  <input [(ngModel)]="newRoom.room_image" placeholder="Room Image URL" />
-  <label>
-    <input type="checkbox" [(ngModel)]="newRoom.room_status" /> Available
-  </label>
-  <button (click)="addRoom()">Add Room</button>
-</div>
+  <!-- Main content -->
+  <div class="main-content">
+    <h3>Add New Room</h3>
+    <div class="form-container">
+      <div class="form-group">
+        <label for="room_name">Room Name</label>
+        <input id="room_name" [(ngModel)]="newRoom.room_name" placeholder="Room Name" type="text" />
+      </div>
 
-<h3>Rooms List</h3>
-<ul>
-  <li *ngFor="let room of rooms">
-    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-      <!-- Room Image -->
-      <img [src]="room.room_image" alt="Room Image" style="width: 100px; height: 100px; margin-right: 10px;" *ngIf="room.room_image else noImage" />
+      <div class="form-group">
+        <label for="room_desc">Room Description</label>
+        <input id="room_desc" [(ngModel)]="newRoom.room_desc" placeholder="Room Description" type="text" />
+      </div>
+
+      <div class="form-group">
+        <label for="room_price">Room Price</label>
+        <input id="room_price" [(ngModel)]="newRoom.room_price" placeholder="Room Price" type="number" />
+      </div>
+
+      <div class="form-group">
+        <label for="room_stock">Room Stock</label>
+        <input id="room_stock" [(ngModel)]="newRoom.room_stock" placeholder="Room Stock" type="number" />
+      </div>
+
+      <div class="form-group">
+        <label for="room_image">Room Image URL</label>
+        <input id="room_image" [(ngModel)]="newRoom.room_image" placeholder="Room Image URL" type="url" />
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="newRoom.room_status" /> Available
+        </label>
+      </div>
       
-      <ng-template #noImage>
-        <p>No Image Available</p>
-      </ng-template>
-      
-      <div>
-        <!-- Room Details -->
-        <strong>{{ room.room_name }}</strong> - {{ room.room_desc }} - Price: {{ room.room_price }} - Stock: {{ room.room_stock }} - Status: {{ room.room_status ? 'Available' : 'Not Available' }}
-        <div>
-          <button (click)="editRoom(room)">Edit</button>
-          <button (click)="deleteRoom(room.room_id)">Delete</button>
+      <button (click)="addRoom()">Add Room</button>
+    </div>
+
+    <h3>Rooms List</h3>
+    <ul class="room-list">
+      <li *ngFor="let room of rooms">
+        <div class="room-item">
+          <!-- Room Image -->
+          <img [src]="room.room_image" alt="Room Image" *ngIf="room.room_image; else noImage" />
+          
+          <ng-template #noImage>
+            <p>No Image Available</p>
+          </ng-template>
+
+          <!-- Room Details -->
+          <div class="room-details">
+            <strong>{{ room.room_name }}</strong> - {{ room.room_desc }} - Price: {{ room.room_price }} - Stock: {{ room.room_stock }} - Status: {{ room.room_status ? 'Available' : 'Not Available' }}
+            <div class="button-group">
+              <button (click)="editRoom(room)">Edit</button>
+              <button (click)="deleteRoom(room.room_id)">Delete</button>
+            </div>
+          </div>
         </div>
+      </li>
+    </ul>
+
+    <div *ngIf="selectedRoom">
+      <h3>Edit Room</h3>
+      <div class="form-container">
+        <div class="form-group">
+          <label for="edit_room_name">Room Name</label>
+          <input id="edit_room_name" [(ngModel)]="selectedRoom.room_name" placeholder="Room Name" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit_room_desc">Room Description</label>
+          <input id="edit_room_desc" [(ngModel)]="selectedRoom.room_desc" placeholder="Room Description" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit_room_price">Room Price</label>
+          <input id="edit_room_price" [(ngModel)]="selectedRoom.room_price" placeholder="Room Price" type="number" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit_room_stock">Room Stock</label>
+          <input id="edit_room_stock" [(ngModel)]="selectedRoom.room_stock" placeholder="Room Stock" type="number" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit_room_image">Room Image URL</label>
+          <input id="edit_room_image" [(ngModel)]="selectedRoom.room_image" placeholder="Room Image URL" type="url" />
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="selectedRoom.room_status" /> Available
+          </label>
+        </div>
+        
+        <button (click)="updateRoom()">Update Room</button>
       </div>
     </div>
-  </li>
-</ul>
-
-<div *ngIf="selectedRoom">
-  <h3>Edit Room</h3>
-  <input [(ngModel)]="selectedRoom.room_name" placeholder="Room Name" />
-  <input [(ngModel)]="selectedRoom.room_desc" placeholder="Room Description" />
-  <input [(ngModel)]="selectedRoom.room_price" placeholder="Room Price" type="number" />
-  <input [(ngModel)]="selectedRoom.room_stock" placeholder="Room Stock" type="number" />
-  <input [(ngModel)]="selectedRoom.room_image" placeholder="Room Image URL" />
-  <label>
-    <input type="checkbox" [(ngModel)]="selectedRoom.room_status" /> Available
-  </label>
-  <button (click)="updateRoom()">Update Room</button>
+  </div>
 </div>
