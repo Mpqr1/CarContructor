@@ -1,45 +1,41 @@
 <div class="dashboard">
-  <!-- Sidebar -->
   <nav class="sidebar">
-      <ul>
-
-
-
+    <ul>
+      <li><h3>Resort manage</h3></li>
+      <li><a routerLink="/admin-page">Admin dashboard</a></li>
       <li><a routerLink="/room-manage">Rooms manage</a></li>
       <li><a routerLink="/booking-manage">Booking manage</a></li>
-      <li><a routerLink="/user-manage">User Manage</a></li>
-
-      </ul>
+    </ul>
   </nav>
 
+  <div class="main-content">
+    <div class="filter-section">
+      <label for="startDate">Start Date:</label>
+      <input id="startDate" type="date" [(ngModel)]="startDate" (change)="filterBookings()" />
+      <label for="endDate">End Date:</label>
+      <input id="endDate" type="date" [(ngModel)]="endDate" (change)="filterBookings()" />
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Booking ID</th>
-      <th>Room ID</th>
-      <th>User ID</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Total Days</th>
-      <th>Total Price</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let booking of bookings">
-      <td>{{ booking.booking_id }}</td>
-      <td>{{ booking.room_id }}</td>
-      <td>{{ booking.user_id || 'N/A' }}</td>
-      <td>{{ booking.start_date }}</td>
-      <td>{{ booking.end_date }}</td>
-      <td>{{ booking.total_days }}</td>
-      <td>{{ booking.total_price }}</td>
-      <td>
-        <!-- ปุ่มลบการจอง -->
-        <button (click)="deleteBooking(booking.booking_id)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <div class="bookings-container">
+      <div *ngFor="let booking of filteredBookings" class="booking-card">
+        <h3>Booking ID: {{ booking.booking_id }}</h3>
+        <p>Room: {{ booking.room_name }}</p>
+        <p>User: {{ booking.user_name }}</p>
+        <p>Booking Date: {{ booking.start_date | date }} - {{ booking.end_date | date }}</p>
+        <p><strong>Status:</strong> {{ booking.booking_status }}</p>
+        <button (click)="toggleDetails(booking.booking_id)" class="details">ดูรายละเอียด</button>
+    
+        <div *ngIf="selectedBookingId === booking.booking_id" class="booking-details">
+          <p><strong>Total Days:</strong> {{ booking.total_days }}</p>
+          <p><strong>Total Price:</strong> {{ booking.total_price }}</p>
+          <p><strong>Status:</strong> {{ booking.booking_status }}</p>
+          <button *ngIf="booking.booking_status === 'booking'" (click)="updateBookingStatus(booking.booking_id, 'check-in')" class="check-in">Check In</button>
+          <button *ngIf="booking.booking_status === 'check-in'" (click)="updateBookingStatus(booking.booking_id, 'check-out')" class="check-out">Check Out</button>
+          <button (click)="deleteBooking(booking.booking_id)" class="delete">Delete</button>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
 </div>

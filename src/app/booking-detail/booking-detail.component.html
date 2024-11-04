@@ -1,13 +1,30 @@
 <h2>Booking Details</h2>
-<h3>Room Details</h3>
-<p>Room Name: {{ bookingDetails.room.room_name }}</p>
-<p>Description: {{ bookingDetails.room.room_desc }}</p>
-<p>Price per Day: {{ bookingDetails.room.room_price }}</p>
-<p>Stock: {{ bookingDetails.room.room_stock }}</p>
-<p>Total Days: {{ totalDays }}</p>
-<p>Total Price: {{ totalPrice }}</p>
-
-<h3>User Information</h3>
-<p>Name: {{ user ? user.user_name : 'N/A' }}</p>
-<p>Email: {{ user ? user.user_email : 'N/A' }}</p>
-<button (click)="confirmBooking()">Confirm Booking</button>
+<div class="booking-details-container">
+    
+  
+    <div class="room-details">
+      <h3>Room Details</h3><hr>
+      <div class="details-layout">
+        <img [src]="bookingDetails.room.room_image" alt="Room Image" class="room-image" />
+        <div class="details-text">
+          <p><strong>Room Name:</strong> {{ bookingDetails.room.room_name }}</p>
+          <p><strong>Description:</strong> {{ bookingDetails.room.room_desc }}</p>
+          <p><strong>Price per Day:</strong> {{ bookingDetails.room.room_price }}</p>
+          <p><strong>Stock:</strong> {{ bookingDetails.room.room_stock }}</p>
+          <p><strong>Total Days:</strong> {{ totalDays }}</p>
+          <p><strong>Total Price:</strong> {{ totalPrice }}</p>
+          <p><strong>Start Date:</strong> {{ bookingDetails.startDate | date }}</p>
+          <p><strong>End Date:</strong> {{ bookingDetails.endDate | date }}</p>
+        </div>
+      </div>
+    </div><hr>
+  
+    <div class="user-info">
+      <h3>User Information</h3><br>
+      <p><strong>Name:</strong> {{ user ? user.user_name : 'N/A' }}</p>
+      <p><strong>Email:</strong> {{ user ? user.user_email : 'N/A' }}</p>
+    </div>
+  
+    <button (click)="confirmBooking()">Confirm Booking</button>
+  </div>
+  

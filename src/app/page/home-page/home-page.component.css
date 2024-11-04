@@ -2,3 +2,41 @@
     height: 400px; /* ตั้งค่าความสูงที่ต้องการ */
     object-fit: cover; /* ครอบคลุมพื้นที่และครอบรูปให้ดูดี */
   }
+
+  .horizon-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px 0;
+  }
+  
+  .room-preview {
+    min-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .room-preview img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .room-preview h4 {
+    margin: 10px 0;
+  }
+  
+  .room-preview button {
+    margin-bottom: 10px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .room-preview button:hover {
+    background-color: #2980b9;
+  }

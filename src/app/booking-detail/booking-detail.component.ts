@@ -75,6 +75,7 @@ export class BookingDetailComponent implements OnInit {
         console.error('Error confirming booking:', error);
       }
     });
+    alert(`Booking Success!`)
   }
 
   // ฟังก์ชันลดจำนวน stock ห้องหลังการจอง

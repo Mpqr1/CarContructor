@@ -1,30 +1,22 @@
-<h2>Available Rooms</h2>
+<h2>Available Resorts</h2>
+<input type="text" [(ngModel)]="searchQuery" placeholder="ค้นหาห้องพัก" (input)="filterRooms()" />
 
-<div *ngFor="let room of availableRooms" class="room-container">
-  <!-- Room image on the left -->
+<div *ngFor="let room of filteredRooms" class="room-container">
   <div class="room-image">
-    <img *ngIf="room.room_image" [src]="room.room_image" alt="Room Image"/>
+    <img [src]="room.room_image" alt="Room Image"/>
   </div>
-  
-  <!-- Room details on the right -->
   <div class="room-details">
     <h3>{{ room.room_name }}</h3>
     <p>{{ room.room_desc }}</p>
     <p>Price per day: {{ room.room_price }}</p>
     <p>Available stock: {{ room.room_stock }}</p>
-    
-    <!-- แสดงสถานะห้องตามค่า room_status -->
     <p>Status: {{ room.room_status ? 'Available' : 'Not Available' }}</p>
-    
-    <!-- Date selection -->
     <div class="date-selection">
       <label>Start Date:</label>
       <input type="date" [(ngModel)]="startDate">
       <label>End Date:</label>
       <input type="date" [(ngModel)]="endDate">
-    </div>
-
-    <!-- Book button -->
+    </div><hr>
     <button (click)="bookRoom(room)">Book Now</button>
   </div>
 </div>

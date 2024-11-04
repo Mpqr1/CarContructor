@@ -7,7 +7,11 @@ import { BookingService } from '../../service/booking.service';
   styleUrls: ['./booking-manage.component.css']
 })
 export class BookingManageComponent implements OnInit {
-  bookings: any[] = []; // เก็บข้อมูลการจองทั้งหมด
+  bookings: any[] = [];
+  filteredBookings: any[] = [];
+  selectedBookingId: number | null = null;
+  startDate: string = '';
+  endDate: string = '';
 
   constructor(private bookingService: BookingService) {}
 
@@ -18,8 +22,9 @@ export class BookingManageComponent implements OnInit {
   loadBookings() {
     this.bookingService.getAllBookings().subscribe({
       next: (data) => {
+        console.log('API Response:', data); // ตรวจสอบข้อมูลที่ได้จาก API
         this.bookings = data;
-        console.log('Bookings:', this.bookings);
+        this.filteredBookings = data;
       },
       error: (error) => {
         console.error('Error loading bookings:', error);
@@ -27,13 +32,37 @@ export class BookingManageComponent implements OnInit {
     });
   }
 
-  // Optional: ฟังก์ชันลบการจอง
+  filterBookings() {
+    this.filteredBookings = this.bookings.filter(booking => {
+      const bookingStart = new Date(booking.start_date);
+      const bookingEnd = new Date(booking.end_date);
+      const start = this.startDate ? new Date(this.startDate) : null;
+      const end = this.endDate ? new Date(this.endDate) : null;
+
+      return (!start || bookingStart >= start) && (!end || bookingEnd <= end);
+    });
+  }
+
+  toggleDetails(bookingId: number) {
+    this.selectedBookingId = this.selectedBookingId === bookingId ? null : bookingId;
+  }
+
+  updateBookingStatus(bookingId: number, status: string) {
+    this.bookingService.updateBookingStatus(bookingId, status).subscribe({
+      next: () => {
+        this.loadBookings();
+      },
+      error: (error) => {
+        console.error('Error updating booking status:', error);
+      }
+    });
+  }
+
   deleteBooking(bookingId: number) {
     if (confirm('Are you sure you want to delete this booking?')) {
       this.bookingService.deleteBooking(bookingId).subscribe({
         next: () => {
-          this.bookings = this.bookings.filter(booking => booking.booking_id !== bookingId);
-          console.log('Booking deleted');
+          this.loadBookings();
         },
         error: (error) => {
           console.error('Error deleting booking:', error);

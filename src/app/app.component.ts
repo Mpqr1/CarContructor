@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.loadUser();
     this.authService.isAuthenticated().subscribe((isAuthenticated) => {
       if (isAuthenticated) {
         const userRole = localStorage.getItem('user_role'); // ดึงค่า role จาก localStorage โดยตรง

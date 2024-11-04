@@ -35,5 +35,15 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+  </div><hr>
+
+  <h2>Resort List</h2>
+<div class="horizon-scroll">
+  <div *ngFor="let room of featuredRooms" class="room-preview">
+    <img [src]="room.room_image" alt="Room Image" class="room-preview-image"/>
+    <h4>{{ room.room_name }}</h4>
+    <h6>{{ room.room_price}}บาท/คืน</h6>
+    <button (click)="viewRoomDetails(room.room_name)">View detail</button>
   </div>
+</div>
 

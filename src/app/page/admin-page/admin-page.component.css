@@ -7,14 +7,14 @@
   
   /* Sidebar styling */
   .sidebar {
-    width: 200px; /* ความกว้าง sidebar คงที่ */
-    background-color: #0b2239; /* สีพื้นหลังของ sidebar */
-    color: white; /* สีของตัวอักษร */
-    padding: 20px 0; /* ลด padding ซ้าย-ขวา */
-    position: fixed; /* ยึดติดกับขอบหน้าจอ */
-    top: 150px; /* เลื่อนลงมาให้ตรงกับด้านล่างของ header */
+    width: 200px;
+    background-color: #0b2239;
+    color: white;
+    padding: 20px 0;
+    position: fixed;
+    top: 0px; 
+    bottom: 0;
     left: 0;
-    height: calc(100vh - 120px); /* ปรับความสูง sidebar ให้เต็มหน้าจอ */
     box-sizing: border-box;
   }
   

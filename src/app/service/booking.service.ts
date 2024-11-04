@@ -28,4 +28,9 @@ export class BookingService {
   deleteBooking(bookingId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${bookingId}`);
   }
+  updateBookingStatus(bookingId: number, status: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/update-status/${bookingId}`, { status });
+  }
+  
+  
 }

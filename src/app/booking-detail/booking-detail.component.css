@@ -1,0 +1,65 @@
+.booking-details-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: flex-start;
+    color: #0066ff;
+  }
+  
+  h3 {
+    text-align: flex-start;
+    color: #333;
+  }
+  
+  .room-details, .user-info {
+    margin-top: 20px;
+  }
+  
+  .details-layout {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .room-image {
+    width: 40%; /* ปรับขนาดรูปภาพ */
+    margin-right: 20px;
+    border-radius: 8px;
+  }
+  
+  .details-text {
+    width: 60%;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

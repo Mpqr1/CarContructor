@@ -106,4 +106,13 @@ export class AuthService {
       return of(result as T); // คืนค่าแบบที่ไม่ให้แอปหยุดทำงาน
     };
   }
+  loadUser(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.isAuthenticatedSubject.next(true);
+    } else {
+      this.isAuthenticatedSubject.next(false);
+    }
+  }
+  
 }

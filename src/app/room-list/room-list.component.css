@@ -1,107 +1,55 @@
-/* General styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f4f6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-    margin-top: 20px;
-  }
-  
-  h3 {
-    color: #2c3e50;
-    font-size: 1.5rem;
-    margin: 0;
-    padding: 10px 0;
-  }
-  
-  p {
-    margin: 5px 0;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: inline-block;
-  }
-  
-  /* Room container styling */
-  /* Room container styling */
 .room-container {
   display: flex;
   align-items: flex-start;
   background-color: #ffffff;
-  border: 1px solid #76c8ff;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
+  margin: 10px 0;
   padding: 20px;
-  max-width: 1000px; /* เพิ่มขนาดความกว้างสูงสุด */
-  width: 90%; /* ปรับความกว้างตามที่ต้องการ */
-  transition: transform 0.2s ease;
-  gap: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Room image styling */
 .room-image {
   flex: 1;
-  max-width: 100%; /* เพิ่มขนาดความกว้างของรูปภาพ */
+  max-width: 30%;
 }
 
 .room-image img {
   width: 100%;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
-  
-  
-  
-  /* Room details styling */
-  .room-details {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  /* Date selection styling */
-  .date-selection {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  input[type="date"] {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px;
-    margin: 5px 0;
-    width: 100%;
-    max-width: 150px;
-  }
-  
-  /* Book button styling */
-  button {
-    background-color: #3498db;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-    align-self: start;
-  }
-  
-  button:hover {
-    background-color: #2980b9;
-  }
-  
+.room-details {
+  flex: 2;
+  margin-left: 20px;
+}
+
+.date-selection {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

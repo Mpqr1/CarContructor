@@ -4,7 +4,6 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookingPageComponent } from './page/booking-page/booking-page.component';
 import { ContactPageComponent } from './page/contact-page/contact-page.component';
 import { HomePageComponent } from './page/home-page/home-page.component';
 import { LoginPageComponent } from './page/login-page/login-page.component';
@@ -21,7 +20,6 @@ import { AdminPageComponent } from './page/admin-page/admin-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BookingPageComponent,
     ContactPageComponent,
     HomePageComponent,
     LoginPageComponent,

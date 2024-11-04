@@ -5,10 +5,10 @@
       <input [(ngModel)]="user.user_name" placeholder="Name" required name="user_name" />
       <input [(ngModel)]="user.user_email" placeholder="Email" required type="email" name="user_email" />
       <input [(ngModel)]="user.user_password" placeholder="Password" required type="password" name="user_password" />
-      <select [(ngModel)]="user.user_role" name="user_role">
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
+      <input [(ngModel)]="confirmPassword" placeholder="Confirm Password" required type="password" name="confirmPassword" />
+      
+      <div *ngIf="passwordMismatch" class="error-message">Passwords do not match</div>
+      
       <button type="submit">Register</button>
     </form>
   </div>
