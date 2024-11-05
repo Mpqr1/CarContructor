@@ -10,12 +10,14 @@ import { RoomListComponent } from './room-list/room-list.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { BookingManageComponent } from './manage/booking-manage/booking-manage.component';
 import { AdminPageComponent } from './page/admin-page/admin-page.component';
+import { MybookingComponent } from './page/mybooking/mybooking.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'home', component:HomePageComponent},
   {path: 'login', component:LoginPageComponent },
   {path: 'register', component:RegisterPageComponent },
+  {path: 'mybooking', component:MybookingComponent},
   {path: 'contact', component:ContactPageComponent},
   {path: 'news', component:NewsPageComponent },
   {path: 'room-manage', component: RoomManageComponent},
