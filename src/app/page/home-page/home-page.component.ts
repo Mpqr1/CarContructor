@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
   loadFeaturedRooms() {
     this.roomService.getAvailableRooms().subscribe({
       next: (rooms) => {
-        this.featuredRooms = rooms.slice(0, 3); // เลือกเฉพาะ 3 ห้องแรกสำหรับแสดงใน carousel
+        this.featuredRooms = rooms.slice(0, 6); // เลือกเฉพาะ 3 ห้องแรกสำหรับแสดงใน carousel
       },
       error: (err) => {
         console.error('Error loading featured rooms:', err);

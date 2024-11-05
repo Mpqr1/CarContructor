@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService } from '../../service/booking.service';
+import { AuthService } from '../../service/auth.service';
 
 
 @Component({
@@ -14,21 +15,21 @@ export class MybookingComponent implements OnInit {
   startDate: string = '';
   endDate: string = '';
 
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loadBookings();
+    this.loadMyBookings();
   }
 
-  loadBookings() {
-    this.bookingService.getAllBookings().subscribe({
+  loadMyBookings() {
+    this.bookingService.getMyBookings().subscribe({
       next: (data) => {
-        console.log('API Response:', data); // ตรวจสอบข้อมูลที่ได้จาก API
+        console.log('User bookings:', data);
         this.bookings = data;
         this.filteredBookings = data;
       },
       error: (error) => {
-        console.error('Error loading bookings:', error);
+        console.error('Error loading user bookings:', error);
       }
     });
   }
@@ -46,29 +47,5 @@ export class MybookingComponent implements OnInit {
 
   toggleDetails(bookingId: number) {
     this.selectedBookingId = this.selectedBookingId === bookingId ? null : bookingId;
-  }
-
-  updateBookingStatus(bookingId: number, status: string) {
-    this.bookingService.updateBookingStatus(bookingId, status).subscribe({
-      next: () => {
-        this.loadBookings();
-      },
-      error: (error) => {
-        console.error('Error updating booking status:', error);
-      }
-    });
-  }
-
-  deleteBooking(bookingId: number) {
-    if (confirm('Are you sure you want to delete this booking?')) {
-      this.bookingService.deleteBooking(bookingId).subscribe({
-        next: () => {
-          this.loadBookings();
-        },
-        error: (error) => {
-          console.error('Error deleting booking:', error);
-        }
-      });
-    }
   }
 }

@@ -22,7 +22,7 @@ export class BookingManageComponent implements OnInit {
   loadBookings() {
     this.bookingService.getAllBookings().subscribe({
       next: (data) => {
-        console.log('API Response:', data); // ตรวจสอบข้อมูลที่ได้จาก API
+        console.log('API Response:', data); // Check the data
         this.bookings = data;
         this.filteredBookings = data;
       },

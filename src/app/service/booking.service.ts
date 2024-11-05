@@ -10,12 +10,10 @@ export class BookingService {
 
   constructor(private http: HttpClient) {}
 
-  // Add a booking
   addBooking(bookingData: any): Observable<any> {
     return this.http.post(this.apiUrl, bookingData);
   }
 
-  // Update room stock after booking
   updateRoomStock(roomId: number, daysBooked: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/update-room-stock/${roomId}`, { daysBooked });
   }
@@ -24,13 +22,17 @@ export class BookingService {
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
 
-  // ลบการจองโดย booking_id
   deleteBooking(bookingId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${bookingId}`);
   }
+
   updateBookingStatus(bookingId: number, status: string): Observable<any> {
     return this.http.patch(`${this.apiUrl}/update-status/${bookingId}`, { status });
   }
-  
-  
+
+  getMyBookings(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/mybookings`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    });
+  }
 }
