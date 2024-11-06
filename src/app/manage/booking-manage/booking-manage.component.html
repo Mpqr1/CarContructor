@@ -2,29 +2,49 @@
   <nav class="sidebar">
     <ul>
       <li><h3>Resort manage</h3></li>
-      <!-- <li><a routerLink="/admin-page">Admin dashboard</a></li> -->
       <li><a routerLink="/room-manage">Rooms manage</a></li>
       <li><a routerLink="/booking-manage">Booking manage</a></li>
     </ul>
-  </nav>
-
+  </nav> 
+ 
   <div class="main-content">
+    
     <div class="filter-section">
-      <label for="startDate">Start Date:</label>
-      <input id="startDate" type="date" [(ngModel)]="startDate" (change)="filterBookings()" />
-      <label for="endDate">End Date:</label>
-      <input id="endDate" type="date" [(ngModel)]="endDate" (change)="filterBookings()" />
+      <div class="date-filters">
+        <label for="startDate">Start Date:</label>
+        <input id="startDate" type="date" [(ngModel)]="startDate" (change)="applyFilters()" />
+        
+        <label for="endDate">End Date:</label>
+        <input id="endDate" type="date" [(ngModel)]="endDate" (change)="applyFilters()" />
+      </div>
+
+      <div class="resort-filter">
+        <label for="resortName">Resort Name:</label>
+        <input id="resortName" type="text" [(ngModel)]="resortName" placeholder="Enter resort name" (input)="applyFilters()" />
+      </div>
+
+      <div class="customer-filter">
+        <label for="customerName">Customer Name:</label>
+        <input id="customerName" type="text" [(ngModel)]="customerName" placeholder="Enter customer name" (input)="applyFilters()" />
+      </div>
+      
+      <div class="status-filter-buttons">
+        <button (click)="filterByStatus('booking')" class="filter-button">Booking</button>
+        <button (click)="filterByStatus('check-in')" class="filter-button">Check In</button>
+        <button (click)="filterByStatus('check-out')" class="filter-button">Check Out</button>
+        <button (click)="resetFilter()" class="filter-button">All</button>
+      </div>
     </div>
 
     <div class="bookings-container">
       <div *ngFor="let booking of filteredBookings" class="booking-card">
         <h3>Booking ID: {{ booking.booking_id }}</h3>
-        <p>Room: {{ booking.room_name }}</p>
+        <p>Room name: {{ booking.room_name }}</p>
         <p>User: {{ booking.user_name }}</p>
         <p>Booking Date: {{ booking.start_date | date }} - {{ booking.end_date | date }}</p>
         <p><strong>Status:</strong> {{ booking.booking_status }}</p>
         <button (click)="toggleDetails(booking.booking_id)" class="details">ดูรายละเอียด</button>
-    
+
         <div *ngIf="selectedBookingId === booking.booking_id" class="booking-details">
           <p><strong>Total Days:</strong> {{ booking.total_days }}</p>
           <p><strong>Total Price:</strong> {{ booking.total_price }}</p>
@@ -35,7 +55,5 @@
         </div>
       </div>
     </div>
-    
-    
   </div>
 </div>

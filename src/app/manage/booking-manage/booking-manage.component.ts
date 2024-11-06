@@ -10,8 +10,13 @@ export class BookingManageComponent implements OnInit {
   bookings: any[] = [];
   filteredBookings: any[] = [];
   selectedBookingId: number | null = null;
+  isEditing: boolean = false;
   startDate: string = '';
   endDate: string = '';
+  resortName: string = '';
+  customerName: string = ''; // เพิ่มตัวแปรสำหรับค้นหาชื่อลูกค้า
+  selectedStatus: string = ''; // ตัวแปรสำหรับสถานะที่เลือก
+  editData: any = {};
 
   constructor(private bookingService: BookingService) {}
 
@@ -22,9 +27,8 @@ export class BookingManageComponent implements OnInit {
   loadBookings() {
     this.bookingService.getAllBookings().subscribe({
       next: (data) => {
-        console.log('API Response:', data); // Check the data
         this.bookings = data;
-        this.filteredBookings = data;
+        this.applyFilters(); // เรียกใช้ applyFilters หลังจากโหลดข้อมูล
       },
       error: (error) => {
         console.error('Error loading bookings:', error);
@@ -32,19 +36,67 @@ export class BookingManageComponent implements OnInit {
     });
   }
 
-  filterBookings() {
+  // ฟังก์ชันการกรองทั้งหมด
+  applyFilters() {
     this.filteredBookings = this.bookings.filter(booking => {
       const bookingStart = new Date(booking.start_date);
       const bookingEnd = new Date(booking.end_date);
       const start = this.startDate ? new Date(this.startDate) : null;
       const end = this.endDate ? new Date(this.endDate) : null;
 
-      return (!start || bookingStart >= start) && (!end || bookingEnd <= end);
+      return (
+        (!start || bookingStart >= start) &&
+        (!end || bookingEnd <= end) &&
+        (this.selectedStatus === '' || booking.booking_status === this.selectedStatus) &&
+        (!this.resortName || booking.room_name.toLowerCase().includes(this.resortName.toLowerCase())) &&
+        (!this.customerName || booking.user_name.toLowerCase().includes(this.customerName.toLowerCase())) // กรองตามชื่อผู้ใช้
+      );
     });
+  }
+
+  filterByStatus(status: string) {
+    this.selectedStatus = status;
+    this.applyFilters();
+  }
+
+  resetFilter() {
+    this.selectedStatus = '';
+    this.resortName = '';
+    this.customerName = ''; // รีเซ็ตชื่อลูกค้า
+    this.startDate = '';
+    this.endDate = '';
+    this.applyFilters();
   }
 
   toggleDetails(bookingId: number) {
     this.selectedBookingId = this.selectedBookingId === bookingId ? null : bookingId;
+    this.isEditing = false;
+  }
+
+  enableEdit(booking: any) {
+    this.isEditing = true;
+    this.editData = {
+      booking_id: booking.booking_id,
+      user_name: booking.user_name,
+      room_id: booking.room_id,
+      total_price: booking.total_price,
+      start_date: booking.start_date,
+      end_date: booking.end_date
+    };
+  }
+
+  saveBooking() {
+    if (this.editData) {
+      this.bookingService.updateBooking(this.editData.booking_id, this.editData).subscribe({
+        next: () => {
+          this.loadBookings();
+          this.isEditing = false;
+        },
+        error: (error) => {
+          console.error('Error updating booking:', error);
+        }
+      });
+    }
   }
 
   updateBookingStatus(bookingId: number, status: string) {

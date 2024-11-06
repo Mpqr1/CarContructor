@@ -103,6 +103,8 @@ button.delete:hover {
   margin-top: 1px;
   padding: 20px;
   background-color: #f8f9fa;
+  width: 2600px;
+  height: 3000px;
 }
 
 .sidebar ul {
@@ -127,4 +129,58 @@ button.delete:hover {
 
 .sidebar ul li a:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+.filter-button {
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #16b4cf;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: #0056b3;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.date-filters {
+  display: flex;
+  gap: 15px;
+}
+
+.resort-filter {
+  width: 100%;
+}
+
+.resort-filter label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.resort-filter input {
+  width: 100%; /* ทำให้ช่องกรอกชื่อรีสอร์ทกว้างขึ้น */
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.status-filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.customer-filter {
+  width: 100%; /* ตั้งค่าความกว้างเต็ม */
+  padding: 8px; /* ปรับขนาด padding เพื่อให้ฟิลด์ดูใหญ่ขึ้น */
+  margin-top: 8px;
+  box-sizing: border-box; /* ทำให้ padding ไม่ส่งผลกับขนาดฟิลด์ */
 }

@@ -35,4 +35,9 @@ export class BookingService {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     });
   }
+  // BookingService - เพิ่มฟังก์ชัน updateBooking
+updateBooking(bookingId: number, bookingData: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/update-booking/${bookingId}`, bookingData);
+}
+
 }
