@@ -1,0 +1,22 @@
+<h2>Available Resorts</h2>
+<input type="text" [(ngModel)]="searchQuery" placeholder="ค้นหาห้องพัก" (input)="filterCars()" />
+
+<div *ngFor="let car of filteredCars" class="car-container">
+  <div class="car-image">
+    <img [src]="car.car_image" alt="Car Image"/>
+  </div>
+  <div class="car-details">
+    <h3>{{ car.car_name }}</h3>
+    <p>{{ car.car_desc }}</p>
+    <p>Price per day: {{ car.car_price }}</p>
+    <p>Available stock: {{ car.car_stock }}</p>
+    <p>Status: {{ car.car_status ? 'Available' : 'Not Available' }}</p>
+    <div class="date-selection">
+      <label>Start Date:</label>
+      <input type="date" [(ngModel)]="startDate">
+      <label>End Date:</label>
+      <input type="date" [(ngModel)]="endDate">
+    </div><hr>
+    <button (click)="bookCar(car)">Book Now</button>
+  </div>
+</div>

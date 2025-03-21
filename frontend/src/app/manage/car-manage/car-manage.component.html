@@ -1,0 +1,112 @@
+<div class="dashboard">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <ul>
+        <li><h3>Resort manage</h3></li>
+        <!-- <li><a routerLink="/admin-page">Admin dashboard</a></li> -->
+        <li><a routerLink="/car-manage">Cars manage</a></li>
+        <li><a routerLink="/booking-manage">Booking manage</a></li>
+      </ul>
+    </nav>
+  
+    <!-- Main content -->
+    <div class="main-content">
+      <h3>Add New Car</h3>
+      <div class="form-container">
+        <div class="form-group">
+          <label for="car_name">Car Name</label>
+          <input id="car_name" [(ngModel)]="newCar.car_name" placeholder="Car Name" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="car_desc">Car Description</label>
+          <input id="car_desc" [(ngModel)]="newCar.car_desc" placeholder="Car Description" type="text" />
+        </div>
+  
+        <div class="form-group">
+          <label for="car_price">Car Price</label>
+          <input id="car_price" [(ngModel)]="newCar.car_price" placeholder="Car Price" type="number" />
+        </div>
+  
+        <div class="form-group">
+          <label for="car_stock">Car Stock</label>
+          <input id="car_stock" [(ngModel)]="newCar.car_stock" placeholder="Car Stock" type="number" />
+        </div>
+  
+        <div class="form-group">
+          <label for="car_image">Car Image URL</label>
+          <input id="car_image" [(ngModel)]="newCar.car_image" placeholder="Car Image URL" type="url" />
+        </div>
+  
+        <div class="form-group checkbox-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="newCar.car_status" /> Available
+          </label>
+        </div>
+        
+        <button (click)="addCar()">Add Car</button>
+      </div>
+  
+      <h3>Cars List</h3>
+      <ul class="car-list">
+        <li *ngFor="let car of cars">
+          <div class="car-item">
+            <!-- Car Image -->
+            <img [src]="car.car_image" alt="Car Image" *ngIf="car.car_image; else noImage" />
+            
+            <ng-template #noImage>
+              <p>No Image Available</p>
+            </ng-template>
+  
+            <!-- Car Details -->
+            <div class="car-details">
+              <strong>{{ car.car_name }}</strong> - {{ car.car_desc }} - Price: {{ car.car_price }} - Stock: {{ car.car_stock }} - Status: {{ car.car_status ? 'Available' : 'Not Available' }}
+              <div class="button-group">
+                <button (click)="editCar(car)">Edit</button>
+                <button (click)="deleteCar(car.car_id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+  
+      <div *ngIf="selectedCar">
+        <h3>Edit Car</h3>
+        <div class="form-container">
+          <div class="form-group">
+            <label for="edit_car_name">Car Name</label>
+            <input id="edit_car_name" [(ngModel)]="selectedCar.car_name" placeholder="Car Name" type="text" />
+          </div>
+  
+          <div class="form-group">
+            <label for="edit_car_desc">Car Description</label>
+            <input id="edit_car_desc" [(ngModel)]="selectedCar.car_desc" placeholder="Car Description" type="text" />
+          </div>
+  
+          <div class="form-group">
+            <label for="edit_car_price">Car Price</label>
+            <input id="edit_car_price" [(ngModel)]="selectedCar.car_price" placeholder="Car Price" type="number" />
+          </div>
+  
+          <div class="form-group">
+            <label for="edit_car_stock">Car Stock</label>
+            <input id="edit_car_stock" [(ngModel)]="selectedCar.car_stock" placeholder="Car Stock" type="number" />
+          </div>
+  
+          <div class="form-group">
+            <label for="edit_car_image">Car Image URL</label>
+            <input id="edit_car_image" [(ngModel)]="selectedCar.car_image" placeholder="Car Image URL" type="url" />
+          </div>
+  
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="selectedCar.car_status" /> Available
+            </label>
+          </div>
+          
+          <button (click)="updateCar()">Update Car</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

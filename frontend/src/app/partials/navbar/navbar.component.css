@@ -1,0 +1,66 @@
+/* สไตล์ Navbar */
+.navbar {
+    
+    background: linear-gradient(to right, #0e559b, #010f16);
+    color: rgb(235, 233, 233);
+    padding: 50px 20px;
+ 
+}
+
+/* โลโก้ */
+.logo img {
+width: 120px;
+}
+
+/* เมนูหลัก */
+.nav-links {
+list-style: none;
+display: flex;
+padding: 0;
+}
+
+.nav-links li {
+position: relative;
+margin: 0 15px;
+}
+
+.nav-links a {
+text-decoration: none;
+color: white;
+font-size: 16px;
+padding: 10px;
+display: block;
+}
+
+/* เมนูหลักเมื่อ Hover */
+.nav-links a:hover {
+background: #007acc;
+border-radius: 5px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background: white;
+list-style: none;
+padding: 10px 0;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu li {
+padding: 5px 20px;
+}
+
+.dropdown-menu a {
+color: black;
+padding: 5px;
+display: block;
+}
+
+/* แสดง Dropdown เมื่อ Hover */
+.dropdown:hover .dropdown-menu {
+display: block;
+}

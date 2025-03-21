@@ -1,0 +1,55 @@
+.room-container {
+    display: flex;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .room-image {
+    flex: 1;
+    max-width: 30%;
+  }
+  
+  .room-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .room-details {
+    flex: 2;
+    margin-left: 20px;
+  }
+  
+  .date-selection {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  button {
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }

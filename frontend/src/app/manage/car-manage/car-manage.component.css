@@ -1,0 +1,163 @@
+/* Main dashboard layout */
+.dashboard {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 200px;
+    background-color: #0b2239;
+    color: white;
+    padding: 20px 0;
+    position: fixed;
+    top: 0px; 
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Main content styling */
+  .main-content {
+    width: 1200px;
+  
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  /* Form styling */
+  .form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="url"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .checkbox-group {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Room list styling */
+  .room-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .room-item {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+  }
+  
+  .room-item img {
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  
+  .room-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .room-details strong {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .button-group button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-group button:hover {
+    background-color: #c9302c;
+  }
+  
+  /* Edit button styling */
+  .button-group button:first-child {
+    background-color: #f0ad4e;
+  }
+  
+  .button-group button:first-child:hover {
+    background-color: #ec971f;
+  }
