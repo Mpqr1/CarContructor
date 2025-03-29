@@ -19,19 +19,19 @@
       </div>
 
       <div class="resort-filter">
-        <label for="resortName">Resort Name:</label>
+        <label for="resortName">Car Name:</label>
         <input id="resortName" type="text" [(ngModel)]="resortName" placeholder="Enter resort name" (input)="applyFilters()" />
       </div>
 
       <div class="customer-filter">
-        <label for="customerName">Customer Name:</label>
+        <label for="customerName">Customer-Name : </label>
         <input id="customerName" type="text" [(ngModel)]="customerName" placeholder="Enter customer name" (input)="applyFilters()" />
       </div>
       
       <div class="status-filter-buttons">
-        <button (click)="filterByStatus('booking')" class="filter-button">Booking</button>
-        <button (click)="filterByStatus('check-in')" class="filter-button">Check In</button>
-        <button (click)="filterByStatus('check-out')" class="filter-button">Check Out</button>
+        <button (click)="filterByStatus('booking')" class="filter-button">bookCar</button>
+        <button (click)="filterByStatus('check-in')" class="filter-button">Currently renting</button>
+        <button (click)="filterByStatus('check-out')" class="filter-button">Finished renting</button>
         <button (click)="resetFilter()" class="filter-button">All</button>
       </div>
     </div>

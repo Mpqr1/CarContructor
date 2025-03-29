@@ -19,12 +19,13 @@ const routes: Routes = [
   {path: 'register', component:RegisterPageComponent },
   {path: 'mybooking', component:MybookingComponent},
   {path: 'contact', component:ContactPageComponent},
-  {path: 'news', component:NewsPageComponent },
+  {path: 'news-page', component:NewsPageComponent },
   {path: 'car-manage', component: CarManageComponent},
   {path: 'booking-manage', component: BookingManageComponent},
   {path: 'car-list', component: CarListComponent},
   {path: 'booking-detail', component: BookingDetailComponent},
   {path: 'admin-page', component: AdminPageComponent},
+  {path: 'contact-page',component: ContactPageComponent}
 ];
 
 @NgModule({

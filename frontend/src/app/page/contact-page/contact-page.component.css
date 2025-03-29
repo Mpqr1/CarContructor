@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #938a8a;
+    margin: 0;
+    padding: 0;
+}
+/* ตั้งสีไอคอน Facebook */
+.social-media .bi-facebook {
+    color: #1877F2;  /* สีฟ้าของ Facebook */
+}
+
+/* ตั้งสีไอคอน YouTube */
+.social-media .bi-youtube {
+    color: #FF0000;  /* สีแดงของ YouTube */
+}
+
+/* ตั้งสีไอคอน Line */
+.social-media .bi-line {
+    color: #00C300;  /* สีเขียวของ Line */
+}
+
+/* เปลี่ยนสีตัวอักษร "Google-Map" ให้เป็นสีตามโลโก้ Google */
+.google-map h4 {
+    font-size: 30px;
+    font-weight: bold;
+    display: inline;
+}
+
+.google-map {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.contact-container {
+    padding: 50px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.contact-container h2 {
+    color: #0655e8;  /* เปลี่ยนสีให้เหมือน Google */
+    font-size: 40px; /* ขยายขนาดตัวอักษร */
+    font-weight: bold; /* ทำให้ตัวอักษรหนาขึ้น */
+    text-transform: uppercase; /* ทำให้ตัวอักษรเป็นตัวพิมพ์ใหญ่ทั้งหมด */
+    letter-spacing: 2px; /* เพิ่มระยะห่างระหว่างตัวอักษร */
+}
+
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.contact-details {
+    width: 40%;
+    padding: 20px;
+    background-color: #e7e7e7;
+    border-radius: 10px;
+}
+
+.contact-details h3 {
+    font-size: 30px;
+    font-weight: bold;;
+}
+.contact-details {
+    color: #4285F4;
+}
+
+.contact-details p {
+    color: #555;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+}
+
+.google-map {
+    width: 50%;
+    height: 400px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+

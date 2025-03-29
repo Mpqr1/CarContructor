@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-contact-page',
   templateUrl: './contact-page.component.html',
-  styleUrl: './contact-page.component.css'
+  styleUrls: ['./contact-page.component.css']  // แก้เป็น 'styleUrls' แทน 'styleUrl'
 })
-export class ContactPageComponent {
-
-}
+export class ContactPageComponent { }

@@ -1,5 +1,5 @@
-<h2>Available Resorts</h2>
-<input type="text" [(ngModel)]="searchQuery" placeholder="ค้นหาห้องพัก" (input)="filterCars()" />
+<h2>Available Cars</h2>
+<input type="text" [(ngModel)]="searchQuery" placeholder="ค้นหารถ" (input)="filterCars()" />
 
 <div *ngFor="let car of filteredCars" class="car-container">
   <div class="car-image">
