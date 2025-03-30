@@ -18,7 +18,7 @@
     color: #333;
   }
   
-  .room-details, .user-info {
+  .car-details, .user-info {
     margin-top: 20px;
   }
   
@@ -27,7 +27,7 @@
     align-items: flex-start;
   }
   
-  .room-image {
+  .car-image {
     width: 40%; /* ปรับขนาดรูปภาพ */
     margin-right: 20px;
     border-radius: 8px;

@@ -37,12 +37,12 @@
     </button>
   </div><hr>
 
-  <h2>Car-rist</h2>
+  <h2>Car-list</h2>
 <div class="horizon-scroll">
   <div *ngFor="let car of featuredCars" class="car-preview">
     <img [src]="car.car_image" alt="Car Image" class="car-preview-image"/>
     <h5>{{ car.car_name }}</h5>
-    <h6>{{ car.car_price}}บาท/คืน</h6>
+    <h6>{{ car.car_price}}บาท/วัน</h6>
     <button (click)="viewCarDetails(car.car_name)">View detail</button>
   </div>
 </div>

@@ -10,7 +10,7 @@
     padding: 20px 0;
   }
   
-  .room-preview {
+  .car-preview {
     min-width: 300px;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -22,18 +22,18 @@
     height: 100%;
   }
   
-  .room-preview img {
+  .car-preview img {
     width: 100%;
     height: 200px;
     object-fit: cover;
   }
   
-  .room-preview h4 {
+  .car-preview h4 {
     margin: 10px 0;
     min-height: 100px; /* กำหนดความสูงขั้นต่ำให้กับชื่อรีสอร์ท */
   }
   
-  .room-preview button {
+  .car-preview button {
     margin-top: auto;
     background-color: #3498db;
     border: none;
@@ -42,7 +42,7 @@
     cursor: pointer;
   }
   
-  .room-preview button:hover {
+  .car-preview button:hover {
     background-color: #2980b9;
   }
   
