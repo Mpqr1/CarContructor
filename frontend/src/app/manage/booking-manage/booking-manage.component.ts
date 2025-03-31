@@ -13,7 +13,7 @@ export class BookingManageComponent implements OnInit {
   isEditing: boolean = false;
   startDate: string = '';
   endDate: string = '';
-  carname: string = ''; // กำหนดค่าเริ่มต้นให้เป็นค่าว่าง
+  carName: string = '';
   customerName: string = ''; // เพิ่มตัวแปรสำหรับค้นหาชื่อลูกค้า
   selectedStatus: string = ''; // ตัวแปรสำหรับสถานะที่เลือก
   editData: any = {};
@@ -48,7 +48,7 @@ export class BookingManageComponent implements OnInit {
         (!start || bookingStart >= start) &&
         (!end || bookingEnd <= end) &&
         (this.selectedStatus === '' || booking.booking_status === this.selectedStatus) &&
-        (!this.resortName || booking.room_name.toLowerCase().includes(this.resortName.toLowerCase())) &&
+        (!this.carName || booking.car_name.toLowerCase().includes(this.carName.toLowerCase())) &&
         (!this.customerName || booking.user_name.toLowerCase().includes(this.customerName.toLowerCase())) // กรองตามชื่อผู้ใช้
       );
     });
@@ -61,7 +61,7 @@ export class BookingManageComponent implements OnInit {
 
   resetFilter() {
     this.selectedStatus = '';
-    this.carname = '';
+    this.carName = '';
     this.customerName = ''; // รีเซ็ตชื่อลูกค้า
     this.startDate = '';
     this.endDate = '';
