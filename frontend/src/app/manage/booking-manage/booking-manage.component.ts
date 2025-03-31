@@ -48,7 +48,7 @@ export class BookingManageComponent implements OnInit {
         (!start || bookingStart >= start) &&
         (!end || bookingEnd <= end) &&
         (this.selectedStatus === '' || booking.booking_status === this.selectedStatus) &&
-        (!this.resortName || booking.room_name.toLowerCase().includes(this.resortName.toLowerCase())) &&
+        (!this.resortName || booking.car_name.toLowerCase().includes(this.resortName.toLowerCase())) &&
         (!this.customerName || booking.user_name.toLowerCase().includes(this.customerName.toLowerCase())) // กรองตามชื่อผู้ใช้
       );
     });
@@ -78,7 +78,7 @@ export class BookingManageComponent implements OnInit {
     this.editData = {
       booking_id: booking.booking_id,
       user_name: booking.user_name,
-      room_id: booking.room_id,
+      car_id: booking.car_id,
       total_price: booking.total_price,
       start_date: booking.start_date,
       end_date: booking.end_date
