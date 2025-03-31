@@ -31,7 +31,7 @@ export class AuthService {
         if (isPlatformBrowser(this.platformId) && response && response.token) {
           localStorage.setItem('token', response.token); // เก็บ Token ใน localStorage
           localStorage.setItem('user_name', response.username); // เก็บชื่อผู้ใช้
-          localStorage.setItem('user_role', response.role); // เก็บ role ของผู้ใช้ใน localStorage
+          localStorage.setItem('user_role', response.role);
           this.isAuthenticatedSubject.next(true); // อัปเดตสถานะการล็อกอิน
         }
         console.log('Login successful:', response);

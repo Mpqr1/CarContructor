@@ -11,7 +11,8 @@ export class RegisterPageComponent {
     user_name: '',
     user_email: '',
     user_password: '',
-    user_role: 'user'  // Default role is 'user'
+    user_role: 'user',
+    user_address: ''  // เพิ่ม user_address ที่นี่
   };
   confirmPassword: string = '';
   passwordMismatch: boolean = false;
@@ -33,3 +34,4 @@ export class RegisterPageComponent {
     });
   }
 }
+

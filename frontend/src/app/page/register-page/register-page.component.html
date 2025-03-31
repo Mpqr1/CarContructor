@@ -6,6 +6,7 @@
       <input [(ngModel)]="user.user_email" placeholder="Email" required type="email" name="user_email" />
       <input [(ngModel)]="user.user_password" placeholder="Password" required type="password" name="user_password" />
       <input [(ngModel)]="confirmPassword" placeholder="Confirm Password" required type="password" name="confirmPassword" />
+      <input [(ngModel)]="user.user_address" placeholder="user address" required type="address" name="user_address" />
       
       <div *ngIf="passwordMismatch" class="error-message">Passwords do not match</div>
       

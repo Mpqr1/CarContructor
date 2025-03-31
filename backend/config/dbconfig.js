@@ -3,8 +3,8 @@ const sql = require('mssql');
 // ตั้งค่าการเชื่อมต่อฐานข้อมูล MSSQL
 const config = {
   user: 'sa',
-  password: 'meow00232',
-  server: 'NONG-SU', // เช่น localhost หรือ IP ของ server
+  password: 'pp123pp456',
+  server: 'DESKTOP-D3K0GTC', // เช่น localhost หรือ IP ของ server
   database: 'RentCarDB',
   options: {
     encrypt: true, // ใช้การเข้ารหัสการเชื่อมต่อ

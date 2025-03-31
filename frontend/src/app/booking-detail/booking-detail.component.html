@@ -23,6 +23,7 @@
       <h3>User Information</h3><br>
       <p><strong>Name:</strong> {{ user ? user.user_name : 'N/A' }}</p>
       <p><strong>Email:</strong> {{ user ? user.user_email : 'N/A' }}</p>
+      <p><strong>Address:</strong> {{ user ? user.user_address : 'N/A' }}</p>
     </div>
   
     <button (click)="confirmBooking()">Confirm Booking</button>

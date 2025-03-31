@@ -44,8 +44,10 @@
             <th>Car Name</th>
             <th>User</th>
             <th>Booking Date</th>
+            <th>Total price</th>
             <th>Status</th>
             <th>Actions</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -54,7 +56,8 @@
             <td>{{ booking.car_name }}</td>
             <td>{{ booking.user_name }}</td>
             <td>{{ booking.start_date | date }} - {{ booking.end_date | date }}</td>
-            <td>{{ booking.booking_status }}</td>
+            <td>{{ booking.total_price }}</td>
+            <td>{{ booking.booking_status }}</td>    
             <td>
               <div class="dropdown">
                 <button class="dropdown-button">Action</button>

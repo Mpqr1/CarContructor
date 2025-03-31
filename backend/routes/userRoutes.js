@@ -12,7 +12,7 @@ const generateToken = (id) => {
 
 // API สำหรับการลงทะเบียนผู้ใช้ใหม่
 router.post('/register', async (req, res) => {
-  const { user_name, user_email, user_password, user_role } = req.body;
+  const { user_name, user_email, user_password, user_role, user_address } = req.body;
 
   try {
     const query = `SELECT * FROM Users WHERE user_email = @Email`;
@@ -25,19 +25,20 @@ router.post('/register', async (req, res) => {
     }
 
     // เข้ารหัสรหัสผ่าน
-    const user = new User(user_name, user_email, user_password, user_role);
+    const user = new User(user_name, user_email, user_password, user_role, user_address);
     await user.hashPassword();
 
     // เพิ่มข้อมูลผู้ใช้ใหม่ลงในฐานข้อมูล MSSQL
     const insertQuery = `
-      INSERT INTO Users (user_name, user_email, user_password, user_role)
-      VALUES (@user_name, @user_email, @user_password, @user_role);
+      INSERT INTO Users (user_name, user_email, user_password, user_role, user_address)
+      VALUES (@user_name, @user_email, @user_password, @user_role, @user_address);
     `;
     const insertRequest = new sql.Request();
     insertRequest.input('user_name', sql.NVarChar, user.user_name);
     insertRequest.input('user_email', sql.NVarChar, user.user_email);
     insertRequest.input('user_password', sql.NVarChar, user.user_password);
     insertRequest.input('user_role', sql.NVarChar, user.user_role);
+    insertRequest.input('user_address', sql.NVarChar, user.user_address);
     await insertRequest.query(insertQuery);
 
     // สร้าง JWT Token
@@ -48,6 +49,7 @@ router.post('/register', async (req, res) => {
       username: user.user_name,
       email: user.user_email,
       role: user.user_role,
+      address: user.user_address,
       token,
     });
   } catch (error) {
@@ -88,6 +90,7 @@ router.post('/login', async (req, res) => {
         username: user.user_name,
         email: user.user_email,
         role: user.user_role,
+        address: user.user_address,
         token,
       });
     } catch (error) {
@@ -97,7 +100,7 @@ router.post('/login', async (req, res) => {
 
   router.get('/:id', (req, res) => {
     const { id } = req.params;
-    const query = `SELECT user_id, user_name, user_email FROM Users WHERE user_id = @id`;
+    const query = `SELECT user_id, user_name, user_email, user_address FROM Users WHERE user_id = @id`;
     const request = new sql.Request();
     request.input('id', sql.Int, id);
     request.query(query, (err, result) => {
