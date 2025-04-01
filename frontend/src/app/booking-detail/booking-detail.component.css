@@ -26,6 +26,11 @@ h3 {
   color: #333;
 }
 
+.p { 
+  font-size: 60px;
+  color: #333;
+}
+
 .details-layout {
   display: flex;
   justify-content: start;

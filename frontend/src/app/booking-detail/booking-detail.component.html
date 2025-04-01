@@ -5,13 +5,13 @@
     <div class="details-layout">
       <img [src]="bookingDetails.car.car_image" alt="Car Image" class="car-image" />
       <div class="details-text">
-        <p><strong>Car Name:</strong> {{ bookingDetails.car.car_name }}</p>
-        <p><strong>Price per Day:</strong> {{ bookingDetails.car.car_price }}</p>
-        <p><strong>Stock:</strong> {{ bookingDetails.car.car_stock }}</p>
-        <p><strong>Total Days:</strong> {{ totalDays }}</p>
-        <p><strong>Total Price:</strong> {{ totalPrice }}</p>
-        <p><strong>Start Date:</strong> {{ bookingDetails.startDate | date }}</p>
-        <p><strong>End Date:</strong> {{ bookingDetails.endDate | date }}</p>
+        <h2><strong>Car Name:</strong> {{ bookingDetails.car.car_name }}</h2>
+        <h6><strong>Price per Day:</strong> {{ bookingDetails.car.car_price }}</h6>
+        <h6><strong>Stock:</strong> {{ bookingDetails.car.car_stock }}</h6>
+        <h6><strong>Total Days:</strong> {{ totalDays }}</h6>
+        <h6><strong>Total Price:</strong> {{ totalPrice }}</h6>
+        <h6><strong>Start Date:</strong> {{ bookingDetails.startDate | date }}</h6>
+        <h6><strong>End Date:</strong> {{ bookingDetails.endDate | date }}</h6>
       </div>
     </div>
   </div><hr>
@@ -27,7 +27,7 @@
       </select>
 
       <label for="contact">ข้อมูลที่อยู่จัดส่งของคุณ:</label>
-      <input type="text" id="contact" [(ngModel)]="quoteForm.contact" name="contact" placeholder="ชื่อ" required>
+      <input type="text" id="contact" [(ngModel)]="quoteForm.contact" name="contact" placeholder="ที่อยู่" required>
 
       <label for="company">ชื่อบริษัท:</label>
       <input type="text" id="company" [(ngModel)]="quoteForm.company" name="company" placeholder="กรอกชื่อบริษัท" required>
