@@ -15,13 +15,13 @@ const verifyToken = (req) => {
   });
 };
 
-// API to add a booking and update car stock
+// API สำหรับการจองรถ
 router.post('/', (req, res) => {
-  const { car_id, user_id, startDate, endDate, totalDays, totalPrice, bookingStatus = 'booking' } = req.body;
+  const { car_id, user_id, startDate, endDate, totalDays, totalPrice, country, contact, company, phone, additional, bookingStatus = 'booking' } = req.body;
 
   const bookingQuery = `
-    INSERT INTO Bookings (car_id, user_id, start_date, end_date, total_days, total_price, booking_status)
-    VALUES (@car_id, @user_id, @startDate, @endDate, @totalDays, @totalPrice, @bookingStatus);
+    INSERT INTO Bookings (car_id, user_id, start_date, end_date, total_days, total_price, booking_status, country, contact, company, phone, additional)
+    VALUES (@car_id, @user_id, @startDate, @endDate, @totalDays, @totalPrice, @bookingStatus, @country, @contact, @company, @phone, @additional);
   `;
 
   const updateStockQuery = `
@@ -38,6 +38,11 @@ router.post('/', (req, res) => {
   request.input('totalDays', sql.Int, totalDays);
   request.input('totalPrice', sql.Decimal, totalPrice);
   request.input('bookingStatus', sql.NVarChar, bookingStatus);
+  request.input('country', sql.NVarChar, country);
+  request.input('contact', sql.NVarChar, contact);
+  request.input('company', sql.NVarChar, company);
+  request.input('phone', sql.NVarChar, phone);
+  request.input('additional', sql.NVarChar, additional);
 
   request.query(updateStockQuery, (updateErr, updateResult) => {
     if (updateErr || updateResult.rowsAffected[0] === 0) {
@@ -55,6 +60,7 @@ router.post('/', (req, res) => {
     });
   });
 });
+
 
 // API to update booking status (Check-in/Check-out)
 router.patch('/update-status/:id', (req, res) => {
@@ -116,7 +122,7 @@ router.patch('/update-status/:id', (req, res) => {
 router.get('/', (req, res) => {
   const query = `
     SELECT 
-      b.booking_id, b.start_date, b.end_date, b.total_days, b.total_price, b.booking_status, 
+      b.booking_id, b.start_date, b.end_date, b.total_days, b.total_price, b.country, b.contact, b.company, b.phone, b.additional, b.booking_status, 
       r.car_name, u.user_name 
     FROM 
       Bookings b
@@ -144,7 +150,7 @@ router.get('/mybookings', (req, res) => {
 
     const query = `
       SELECT 
-        b.booking_id, b.start_date, b.end_date, b.total_days, b.total_price, b.booking_status, 
+        b.booking_id, b.start_date, b.end_date, b.total_days, b.total_price, b.country, b.contact, b.company, b.phone, b.additional, b.booking_status, 
         r.car_name, u.user_name 
       FROM 
         Bookings b

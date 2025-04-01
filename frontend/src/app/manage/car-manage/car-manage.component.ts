@@ -53,6 +53,10 @@ export class CarManageComponent implements OnInit {
     this.selectedCar = { ...car };  // Clone the selected car object for editing
   }
 
+  closeEditCarPopup() {
+    this.selectedCar = null;  // ปิดป็อปอัพเมื่อกดปุ่มกากบาท
+  }
+
   updateCar() {
     if (this.selectedCar) {
       this.carService.updateCar(this.selectedCar.car_id, this.selectedCar).subscribe({

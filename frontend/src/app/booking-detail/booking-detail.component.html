@@ -1,31 +1,49 @@
 <h2>Booking Details</h2>
 <div class="booking-details-container">
-    
-  
-    <div class="car-details">
-      <h3>Car Details</h3><hr>
-      <div class="details-layout">
-        <img [src]="bookingDetails.car.car_image" alt="Car Image" class="car-image" />
-        <div class="details-text">
-          <p><strong>Car Name:</strong> {{ bookingDetails.car.car_name }}</p>
-          
-          <p><strong>Price per Day:</strong> {{ bookingDetails.car.car_price }}</p>
-          <p><strong>Stock:</strong> {{ bookingDetails.car.car_stock }}</p>
-          <p><strong>Total Days:</strong> {{ totalDays }}</p>
-          <p><strong>Total Price:</strong> {{ totalPrice }}</p>
-          <p><strong>Start Date:</strong> {{ bookingDetails.startDate | date }}</p>
-          <p><strong>End Date:</strong> {{ bookingDetails.endDate | date }}</p>
-        </div>
+  <div class="car-details">
+    <h3>Car Details</h3><hr>
+    <div class="details-layout">
+      <img [src]="bookingDetails.car.car_image" alt="Car Image" class="car-image" />
+      <div class="details-text">
+        <p><strong>Car Name:</strong> {{ bookingDetails.car.car_name }}</p>
+        <p><strong>Price per Day:</strong> {{ bookingDetails.car.car_price }}</p>
+        <p><strong>Stock:</strong> {{ bookingDetails.car.car_stock }}</p>
+        <p><strong>Total Days:</strong> {{ totalDays }}</p>
+        <p><strong>Total Price:</strong> {{ totalPrice }}</p>
+        <p><strong>Start Date:</strong> {{ bookingDetails.startDate | date }}</p>
+        <p><strong>End Date:</strong> {{ bookingDetails.endDate | date }}</p>
       </div>
-    </div><hr>
-  
-    <div class="user-info">
-      <h3>User Information</h3><br>
-      <p><strong>Name:</strong> {{ user ? user.user_name : 'N/A' }}</p>
-      <p><strong>Email:</strong> {{ user ? user.user_email : 'N/A' }}</p>
-      <p><strong>Address:</strong> {{ user ? user.user_address : 'N/A' }}</p>
     </div>
-  
-    <button (click)="confirmBooking()">Confirm Booking</button>
+  </div><hr>
+
+  <div class="user-info">
+    <h3>ขอใบเสนอราคา</h3>
+    <div>
+      <label for="country">ที่ตั้งโครงการ:</label>
+      <select id="country" [(ngModel)]="quoteForm.country" name="country" required>
+        <option value="ประเทศไทย">ไทย</option>
+        <option value="ประเทศพม่า">พม่า</option>
+        <option value="ประเทศลาว">ลาว</option>
+      </select>
+
+      <label for="contact">ข้อมูลที่อยู่จัดส่งของคุณ:</label>
+      <input type="text" id="contact" [(ngModel)]="quoteForm.contact" name="contact" placeholder="ชื่อ" required>
+
+      <label for="company">ชื่อบริษัท:</label>
+      <input type="text" id="company" [(ngModel)]="quoteForm.company" name="company" placeholder="กรอกชื่อบริษัท" required>
+
+      <label for="phone">เบอร์โทร:</label>
+      <input type="tel" id="phone" [(ngModel)]="quoteForm.phone" name="phone" placeholder="กรอกเบอร์โทร" required>
+
+      <label for="additional">ข้อมูลเฉพาะเพิ่มเติม:</label>
+      <textarea id="additional" [(ngModel)]="quoteForm.additional" name="additional" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม..." rows="4"></textarea>
+
+      <label for="agree">
+        <input type="checkbox" id="agree" [(ngModel)]="quoteForm.agree" name="agree" required>
+        ยินยอมรับข้อมูลของท่านตามนโยบายความเป็นส่วนตัว
+      </label>
+    </div>
+    <!-- แก้ไขเพื่อไม่ให้ใช้ ngSubmit -->
+    <button (click)="confirmBooking()">ขอใบเสนอราคา</button>
   </div>
-  
+</div>

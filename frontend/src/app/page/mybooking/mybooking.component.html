@@ -1,33 +1,55 @@
-<h1>My booking</h1>
+<h1>My rent car</h1>
 <div class="dashboard">
-    
-  
     <div class="main-content">
-      <div class="filter-section">
-        <label for="startDate">Start Date:</label>
-        <input id="startDate" type="date" [(ngModel)]="startDate" (change)="filterBookings()" />
-        <label for="endDate">End Date:</label>
-        <input id="endDate" type="date" [(ngModel)]="endDate" (change)="filterBookings()" />
-      </div>
-  
-      <div class="bookings-container">
-        <div *ngFor="let booking of filteredBookings" class="booking-card">
-          <h3>Booking ID: {{ booking.booking_id }}</h3>
-          <p>Car: {{ booking.car_name }}</p>
-          <p>User: {{ booking.user_name }}</p>
-          <p>Booking Date: {{ booking.start_date | date }} - {{ booking.end_date | date }}</p>
-          <p><strong>Status:</strong> {{ booking.booking_status }}</p>
-          <button (click)="toggleDetails(booking.booking_id)" class="details">ดูรายละเอียด</button>
-      
-          <div *ngIf="selectedBookingId === booking.booking_id" class="booking-details">
-            <p><strong>Total Days:</strong> {{ booking.total_days }}</p>
-            <p><strong>Total Price:</strong> {{ booking.total_price }}</p>
-            <p><strong>Status:</strong> {{ booking.booking_status }}</p>
-          </div>
+        <div class="filter-section">
+            <label for="startDate">Start Date:</label>
+            <input id="startDate" type="date" [(ngModel)]="startDate" (change)="filterBookings()" />
+            <label for="endDate">End Date:</label>
+            <input id="endDate" type="date" [(ngModel)]="endDate" (change)="filterBookings()" />
         </div>
-      </div>
-      
-      
+
+        <div class="bookings-container">
+            <div *ngFor="let booking of filteredBookings" class="booking-card">
+                <h3>Booking ID: {{ booking.booking_id }}</h3>
+                <p>Car: {{ booking.car_name }}</p>
+                <p>User: {{ booking.user_name }}</p>
+                <p>Booking Date: {{ booking.start_date | date }} - {{ booking.end_date | date }}</p>
+                <p><strong>Status:</strong> {{ booking.booking_status }}</p>
+                <p><strong>Total Days:</strong> {{ booking.total_days }}</p>
+                <p><strong>Total Price:</strong> {{ booking.total_price }}</p>
+                
+
+                <div *ngIf="booking.booking_status === 'booking'">
+                    <div class="payment-options">
+                        <label for="paymentMethod-{{booking.booking_id}}">เลือกวิธีชำระเงิน:</label>
+                        <select id="paymentMethod-{{booking.booking_id}}" [(ngModel)]="paymentMethods[booking.booking_id]">
+                            <option value="credit">ชำระด้วยบัตรเครดิต/เดบิต</option>
+                            <option value="cod">ชำระเงินที่ศูนย์</option>
+                        </select>
+                        <button (click)="confirmPayment(booking.booking_id)" class="btn-confirm">ชำระเงิน</button>
+                        <button (click)="cancelBooking(booking.booking_id)" class="btn-cancel">ยกเลิกการจอง</button>
+
+                    </div>
+                    
+                    <div *ngIf="booking.booking_status === 'booking'">
+                      <!-- Checkbox for selecting receiving locations -->
+                      <div class="payment-options">
+                        <label for="receiveAtLocation-{{booking.booking_id}}">
+                          <input type="radio" [(ngModel)]="selectedOption" name="paymentOption-{{booking.booking_id}}" value="receiveAtLocation" id="receiveAtLocation-{{booking.booking_id}}"> รับรถที่อยู่ที่กำหนด
+                        </label><br>
+                        <label for="receiveAtCenter-{{booking.booking_id}}">
+                          <input type="radio" [(ngModel)]="selectedOption" name="paymentOption-{{booking.booking_id}}" value="receiveAtCenter" id="receiveAtCenter-{{booking.booking_id}}"> รับรถที่ศูนย์บริการ
+                        </label><br>
+                      </div>
+                      
+                </div>
+
+                <div *ngIf="selectedBookingId === booking.booking_id" class="booking-details">
+                    <p><strong>Total Days:</strong> {{ booking.total_days }}</p>
+                    <p><strong>Total Price:</strong> {{ booking.total_price }}</p>
+                    <p><strong>Status:</strong> {{ booking.booking_status }}</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  
+</div>

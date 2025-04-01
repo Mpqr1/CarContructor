@@ -10,9 +10,19 @@ import { AuthService } from '../service/auth.service';
 })
 export class BookingDetailComponent implements OnInit {
   bookingDetails: any;
-  user: any = {}; // ตัวแปรเก็บข้อมูลผู้ใช้
+  user: any = {}; // User details
   totalDays: number = 0;
   totalPrice: number = 0;
+
+  // กำหนด quoteForm ที่จะใช้กับ ngModel
+  quoteForm: any = {
+    country: '',
+    contact: '',
+    company: '',
+    phone: '',
+    additional: '',
+    agree: false
+  };
 
   constructor(
     private router: Router,
@@ -21,27 +31,21 @@ export class BookingDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // รับข้อมูล bookingDetails จาก navigation state
     this.bookingDetails = history.state.bookingDetails;
 
-    // ตรวจสอบว่ามีข้อมูลการจองหรือไม่
     if (this.bookingDetails) {
       const startDate = new Date(this.bookingDetails.startDate);
       const endDate = new Date(this.bookingDetails.endDate);
-      this.totalDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)); // คำนวณจำนวนวันที่จอง
-      this.totalPrice = this.totalDays * this.bookingDetails.car.car_price; // คำนวณราคารวม
+      this.totalDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+      this.totalPrice = this.totalDays * this.bookingDetails.car.car_price;
     }
 
-    // ดึง user ID จาก token เพื่อใช้ใน getUserInfo
     const tokenUser = this.authService.getUser();
     if (tokenUser && tokenUser.id) {
       const userId = tokenUser.id;
-
-      // เรียกใช้ getUserInfo เพื่อดึงข้อมูลผู้ใช้จาก backend
       this.authService.getUserInfo(userId).subscribe({
         next: (userData) => {
-          this.user = userData; // ควรจะได้ {user_id, user_name, user_email}
-          console.log('Fetched User info from backend:', this.user);
+          this.user = userData;
         },
         error: (err) => {
           console.error('Error fetching user info:', err);
@@ -52,33 +56,40 @@ export class BookingDetailComponent implements OnInit {
     }
   }
 
-  // ฟังก์ชันยืนยันการจองห้อง
   confirmBooking() {
-    console.log('User info before confirming booking:', this.user); // ตรวจสอบข้อมูล user ก่อนยืนยันการจอง
+    if (!this.user.user_id) {
+      console.error('User is not logged in');
+      return;
+    }
 
     const bookingData = {
       car_id: this.bookingDetails.car.car_id,
-      user_id: this.user.user_id, // ตรวจสอบว่าใช้ "user_id" จาก backend ที่ดึงมา
+      user_id: this.user.user_id,
       startDate: this.bookingDetails.startDate,
       endDate: this.bookingDetails.endDate,
       totalDays: this.totalDays,
-      totalPrice: this.totalPrice
+      totalPrice: this.totalPrice,
+      country: this.quoteForm.country,
+      contact: this.quoteForm.contact,
+      company: this.quoteForm.company,
+      phone: this.quoteForm.phone,
+      additional: this.quoteForm.additional,
+      bookingStatus: 'booking'
     };
+    console.log('📦 BookingData:', bookingData);
 
     this.bookingService.addBooking(bookingData).subscribe({
       next: (response) => {
-        console.log('Booking confirmed', response);
+        console.log('Booking confirmed successfully', response);
         this.reduceCarStock(this.bookingDetails.car.car_id, this.totalDays);
-        this.router.navigate(['/booking-success']);
+        this.router.navigate(['/mybooking']);
       },
       error: (error) => {
         console.error('Error confirming booking:', error);
       }
     });
-    alert(`Booking Success!`)
   }
 
-  // ฟังก์ชันลดจำนวน stock ห้องหลังการจอง
   reduceCarStock(carId: number, totalDays: number) {
     this.bookingService.updateCarStock(carId, totalDays).subscribe({
       next: (response) => console.log('Car stock updated successfully', response),

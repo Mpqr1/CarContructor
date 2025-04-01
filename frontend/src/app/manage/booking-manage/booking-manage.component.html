@@ -29,8 +29,9 @@
 
       <div class="status-filter-buttons">
         <button (click)="filterByStatus('booking')" class="filter-button">Book Car</button>
-        <button (click)="filterByStatus('check-in')" class="filter-button">Currently Renting</button>
-        <button (click)="filterByStatus('check-out')" class="filter-button">Finished Renting</button>
+        <button (click)="filterByStatus('booking')" class="filter-button">Paid</button>
+        <button (click)="filterByStatus('Renting')" class="filter-button">Currently Renting</button>
+        <button (click)="filterByStatus('Finished using')" class="filter-button">Finished Renting</button>
         <button (click)="resetFilter()" class="filter-button">All</button>
       </div>
     </div>
@@ -45,8 +46,12 @@
             <th>User</th>
             <th>Booking Date</th>
             <th>Total price</th>
+            <th>country</th>
+            <th>contact</th>
+            <th>company</th>
+            <th>phone</th>
+            <th>additional</th>
             <th>Status</th>
-            <th>Actions</th>
             
           </tr>
         </thead>
@@ -57,14 +62,21 @@
             <td>{{ booking.user_name }}</td>
             <td>{{ booking.start_date | date }} - {{ booking.end_date | date }}</td>
             <td>{{ booking.total_price }}</td>
-            <td>{{ booking.booking_status }}</td>    
+            
+            <td>{{ booking.country }}</td>
+            <td>{{ booking.contact }}</td>
+            <td>{{ booking.company }}</td>
+            <td>{{ booking.phone }}</td>
+            <td>{{ booking.additional }}</td>
+            <td>{{ booking.booking_status }}</td>
             <td>
               <div class="dropdown">
                 <button class="dropdown-button">Action</button>
                 <div class="dropdown-content">
                   <button (click)="updateBookingStatus(booking.booking_id, 'booking')">Book Car</button>
-                  <button (click)="updateBookingStatus(booking.booking_id, 'check-in')">Check In</button>
-                  <button (click)="updateBookingStatus(booking.booking_id, 'check-out')">Check Out</button>
+                  <button (click)="updateBookingStatus(booking.booking_id, 'Paid')">Paid</button>
+                  <button (click)="updateBookingStatus(booking.booking_id, 'Renting')">Renting</button>
+                  <button (click)="updateBookingStatus(booking.booking_id, 'Finished using')">Finished using</button>
                   <button (click)="deleteBooking(booking.booking_id)">Delete</button>
                 </div>
               </div>

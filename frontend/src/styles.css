@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    background-image: url(assets/sb.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: repeat;
+  }
+  

@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
   loadFeaturedCars() {
     this.carService.getAvailableCars().subscribe({
       next: (cars) => {
-        this.featuredCars = cars.slice(0, 6); // เลือกเฉพาะ 3 ห้องแรกสำหรับแสดงใน carousel
+        this.featuredCars = cars.slice(0, 30); // เลือกเฉพาะ 3 ห้องแรกสำหรับแสดงใน carousel
       },
       error: (err) => {
         console.error('Error loading featured cars:', err);

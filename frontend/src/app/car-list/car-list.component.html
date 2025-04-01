@@ -7,9 +7,17 @@
   </div>
   <div class="car-details">
     <h3>{{ car.car_name }}</h3>
-    <p>{{ car.car_desc }}</p>
-    <p>Price per day: {{ car.car_price }}</p>
-    <p>Available stock: {{ car.car_stock }}</p>
+    <ul>
+      <li><strong>Description:</strong> {{ car.car_desc.split('-')[0] }}</li>
+                <li><strong></strong> {{ car.car_desc.split('-')[1] }}</li>
+                <li><strong></strong> {{ car.car_desc.split('-')[2] }}</li>
+                <li><strong></strong> {{ car.car_desc.split('-')[3] }}</li>
+                <li><strong></strong> {{ car.car_desc.split('-')[4] }}</li>
+                <li><strong></strong> {{ car.car_desc.split('-')[5] }}</li>
+      
+    </ul>
+    <p>Price per day: {{ car.car_price }} บาท</p>
+    <p>Available stock: {{ car.car_stock }} คัน</p>
     <p>Status: {{ car.car_status ? 'Available' : 'Not Available' }}</p>
     <div class="date-selection">
       <label>Start Date:</label>
@@ -17,6 +25,11 @@
       <label>End Date:</label>
       <input type="date" [(ngModel)]="endDate">
     </div><hr>
-    <button (click)="bookCar(car)">Book Now</button>
+    <button [disabled]="car.car_stock === 0" (click)="bookCar(car)">
+      Book Now
+    </button>
+    
+    <!-- Optional: Show a message when stock is 0 -->
+    <p *ngIf="car.car_stock === 0" style="color: red; font-weight: bold;">Out of stock</p>
   </div>
 </div>

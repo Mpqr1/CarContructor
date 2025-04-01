@@ -4,7 +4,7 @@
 /* Main dashboard layout */
 .dashboard {
     display: flex;
-    height: 100vh;
+    height: flex;
   }
   
   /* Sidebar styling */
@@ -69,7 +69,7 @@
   .form-group label {
     font-size: 16px;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
   }
   
   .form-group input[type="text"],
@@ -164,3 +164,48 @@
   .button-group button:first-child:hover {
     background-color: #ec971f;
   }
+
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .close-button {
+    margin-right: 540px;
+    margin-top: 230px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ca0000;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    color: #000;
+  }
+  
+  .popup-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  

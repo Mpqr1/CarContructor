@@ -4,10 +4,10 @@
   }
 
   .horizon-scroll {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* แสดง 4 คันใน 1 แถว */
+    gap: 20px; /* กำหนดช่องว่างระหว่างรถ */
+    padding: 10px;
   }
   
   .car-preview {
@@ -35,10 +35,10 @@
   
   .car-preview button {
     margin-top: auto;
-    background-color: #3498db;
+    background-color: #aedbfa;
     border: none;
     color: white;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
   }
   
